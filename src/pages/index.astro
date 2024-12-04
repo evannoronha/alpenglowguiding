@@ -1,23 +1,39 @@
 ---
-
+import { Image } from "astro:assets";
+import heroImage from "../images/mazama-23-00571.jpg";
 ---
 
+<head>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		img {
+			width: 100%;
+			height: auto;
+		}
+	</style>
+</head>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Alpenglow Guiding</title>
 	</head>
 	<body>
+		<Image src={heroImage} alt="Climber at Phun Rock" />
 		<h1>Alpenglow Guiding</h1>
 		<h2>Learn to climb high, light and free.</h2>
 		<footer>
 			<p>Seattle, WA 98117</p>
 			<p>
 				<a href="mailto:tom@alpenglowclimbing.com"
-					>tom@alpenglowclimbing.com</a>
+					>tom@alpenglowclimbing.com</a
+				>
 			</p>
 		</footer>
 	</body>
