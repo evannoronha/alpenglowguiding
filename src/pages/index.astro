@@ -14,14 +14,49 @@ import bioImage from "../images/tom-headshot.jpg";
 		img {
 			width: 100%;
 			height: auto;
-		}
-		.hero-image {
-			max-width: 800px;
+			max-width: 50rem;
 		}
 		.bio-image {
 			width: 50%;
 			float: left;
-			margin-right: 1rem;
+		}
+		hr {
+			clear: both;
+		}
+
+		input[type="email"],
+		input[type="text"],
+		input[type="tel"],
+		textarea {
+			width: 100%; /* Full width */
+			padding: 12px; /* Some padding */
+			border: 1px solid #ccc; /* Gray border */
+			border-radius: 4px; /* Rounded borders */
+			box-sizing: border-box; /* Make sure that padding and width stays in place */
+			margin-top: 6px; /* Add a top margin */
+			margin-bottom: 16px; /* Bottom margin */
+			resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+		}
+		/* Style the submit button with a specific background color etc */
+		input[type="submit"] {
+			background-color: #04aa6d;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		/* When moving the mouse over the submit button, add a darker green color */
+		input[type="submit"]:hover {
+			background-color: #45a049;
+		}
+
+		/* Add a background color and some padding around the form */
+		.container {
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			padding: 20px;
 		}
 	</style>
 </head>
@@ -36,9 +71,13 @@ import bioImage from "../images/tom-headshot.jpg";
 	</head>
 	<body>
 		<div>
-		<Image class="hero-image" src={heroImage} alt="Climber at Phun Rock" />
-		<h1>Alpenglow Guiding</h1>
-		<h2>Learn to climb high, light and free.</h2>
+			<Image
+				class="hero-image"
+				src={heroImage}
+				alt="Climber at Phun Rock"
+			/>
+			<h1>Alpenglow Guiding</h1>
+			<h2>Learn to climb high, light and free.</h2>
 		</div>
 		<hr />
 		<div>
@@ -71,7 +110,11 @@ import bioImage from "../images/tom-headshot.jpg";
 		<hr />
 		<div>
 			<h2>About Me</h2>
-			<Image class="bio-image" src={bioImage} alt="Tom Skoog holding a pair of skis in the mountains" />
+			<Image
+				class="bio-image"
+				src={bioImage}
+				alt="Tom Skoog holding a pair of skis in the mountains"
+			/>
 			<p>
 				My name is Tom Skoog. I'm a lifelong Seattleite who has spent
 				much of my life skiing and climbing throughout the Cascade
@@ -94,6 +137,45 @@ import bioImage from "../images/tom-headshot.jpg";
 				rock-solid foundation of climbing skills so you can confidently
 				create your own adventure. Let's get started!
 			</p>
+		</div>
+		<hr />
+		<div>
+			<h2>Certifications</h2>
+			<ul>
+				<li>
+					<p>
+						NREMT: Emergency Medical Technician & Wilderness First
+						Responder
+					</p>
+				</li>
+				<li>
+					<p>AMGA: Apprentice Rock Guide & Apprentice Alpine Guide</p>
+				</li>
+				<li><p>A3: Recreational Level 2 & Partner Rescue Course</p></li>
+			</ul>
+		</div>
+		<hr />
+		<div>
+			<h2>Contact</h2>
+			<form method="POST">
+				<label>
+					Email
+					<input type="email" name="email" />
+				</label>
+				<label>
+					Name
+					<input type="text" name="name" />
+				</label>
+				<label>
+					Phone Number
+					<input type="tel" name="phone" />
+				</label>
+				<label>
+					Message
+					<textarea name="message"></textarea>
+				</label>
+				<input type="submit" disabled></input>
+			</form>
 		</div>
 		<footer>
 			<p>Seattle, WA 98117</p>
