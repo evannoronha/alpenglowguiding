@@ -1,8 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import heroImage from "../images/mazama-23-00571.jpg";
+import heroImage from "../images/hero-image.jpg";
 import bioImage from "../images/tom-headshot.jpg";
-import ContactForm from "../components/ContactForm.astro";
+import ContactForm from "../components/ContactForm";
+
 ---
 
 <head>
@@ -123,8 +124,7 @@ import ContactForm from "../components/ContactForm.astro";
 		<hr />
 		<div>
 			<h2>Contact</h2>
-			<ContactForm />
-
+			<ContactForm client:load/>
 		</div>
 		<footer>
 			<p>Seattle, WA 98117</p>
