@@ -15,6 +15,9 @@ import bioImage from "../images/tom-headshot.jpg";
 			width: 100%;
 			height: auto;
 		}
+		.hero-image {
+			max-width: 800px;
+		}
 		.bio-image {
 			width: 50%;
 			float: left;
@@ -32,9 +35,11 @@ import bioImage from "../images/tom-headshot.jpg";
 		<title>Alpenglow Guiding</title>
 	</head>
 	<body>
-		<Image src={heroImage} alt="Climber at Phun Rock" />
+		<div>
+		<Image class="hero-image" src={heroImage} alt="Climber at Phun Rock" />
 		<h1>Alpenglow Guiding</h1>
 		<h2>Learn to climb high, light and free.</h2>
+		</div>
 		<hr />
 		<div>
 			<h2>Our Programs</h2>
