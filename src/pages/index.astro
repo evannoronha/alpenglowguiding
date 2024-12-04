@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import heroImage from "../images/mazama-23-00571.jpg";
+import bioImage from "../images/tom-headshot.jpg";
 ---
 
 <head>
@@ -14,6 +15,11 @@ import heroImage from "../images/mazama-23-00571.jpg";
 			width: 100%;
 			height: auto;
 		}
+		.bio-image {
+			width: 50%;
+			float: left;
+			margin-right: 1rem;
+		}
 	</style>
 </head>
 <html lang="en">
@@ -21,6 +27,7 @@ import heroImage from "../images/mazama-23-00571.jpg";
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
+		<meta charset="utf-8" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Alpenglow Guiding</title>
 	</head>
@@ -28,26 +35,60 @@ import heroImage from "../images/mazama-23-00571.jpg";
 		<Image src={heroImage} alt="Climber at Phun Rock" />
 		<h1>Alpenglow Guiding</h1>
 		<h2>Learn to climb high, light and free.</h2>
-		<hr>
+		<hr />
 		<div>
 			<h2>Our Programs</h2>
 			<ul>
 				<li>
 					<strong>Single-Pitch Rock</strong>
-					<p>Learn the skills to climb safely and enjoyably at crags the world over.</p>
+					<p>
+						Learn the skills to climb safely and enjoyably at crags
+						the world over.
+					</p>
 				</li>
 				<li>
 					<strong>Multi-Pitch Rock</strong>
-					<p>Get some air under your feet! Our  programs will teach you how to climb multi-pitch routes and get down safe. </p>
+					<p>
+						Get some air under your feet! Our programs will teach
+						you how to climb multi-pitch routes and get down safe.
+					</p>
 				</li>
 				<li>
 					<strong>Rock Rescue</strong>
-					<p>What happens if something goes wrong? Learn the skills to rescue a partner or yourself. Our courses will be tailored to your preferred style of climbing. </p>
+					<p>
+						What happens if something goes wrong? Learn the skills
+						to rescue a partner or yourself. Our courses will be
+						tailored to your preferred style of climbing.
+					</p>
 				</li>
 			</ul>
 		</div>
-		<hr>
+		<hr />
 		<div>
+			<h2>About Me</h2>
+			<Image class="bio-image" src={bioImage} alt="Tom Skoog holding a pair of skis in the mountains" />
+			<p>
+				My name is Tom Skoog. I'm a lifelong Seattleite who has spent
+				much of my life skiing and climbing throughout the Cascade
+				Range. Growing up, I was incredibly fortunate to benefit from
+				quality mentorship in the outdoors--an experience I believe
+				everyone deserves access to.
+			</p>
+			<br />
+			<p>
+				To me, climbing is an art--a unique blend of place, people, and
+				our individual interpretations of adventure. Each climber brings
+				their own perspective, creating something entirely their own. At
+				the same time, the skills required for climbing are more like a
+				craft. With the right guidance and consistent, mindful practice,
+				anyone can master them.
+			</p>
+			<br />
+			<p>
+				That's where I come in. My goal is to help you build a
+				rock-solid foundation of climbing skills so you can confidently
+				create your own adventure. Let's get started!
+			</p>
 		</div>
 		<footer>
 			<p>Seattle, WA 98117</p>
