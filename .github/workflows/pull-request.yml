@@ -26,3 +26,4 @@ jobs:
         with:
           command: pages deploy
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
