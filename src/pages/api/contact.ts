@@ -1,6 +1,8 @@
 import type { APIRoute } from "astro";
+import { sendEmail } from "../../lib/sendEmail";
 
 export const prerender = false
+const emailRecipient = process.env.EMAIL_DESTINATION;
 
 export const POST: APIRoute = async ({ request }) => {
     const data = await request.formData();
@@ -19,6 +21,12 @@ export const POST: APIRoute = async ({ request }) => {
         );
       }
 
+    sendEmail({
+        email: email as string,
+        html: message as string,
+        subject: "New Contact Form Submission",
+        name: name as string,
+    });
     return new Response(
         JSON.stringify({
           message: "Success!"
