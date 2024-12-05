@@ -5,6 +5,7 @@ import bioImage from "../images/tom-headshot.jpg";
 import ContactForm from "../components/ContactForm";
 import Programs from "../components/Programs.astro";
 import AboutTom from "../components/AboutTom.astro";
+import LandingHero from "../components/LandingHero.astro";
 ---
 
 <head>
@@ -36,13 +37,7 @@ import AboutTom from "../components/AboutTom.astro";
 </head>
 <body>
 	<div>
-		<Image
-		class="hero-image"
-		src={heroImage}
-		alt="Climber at Phun Rock"
-		/>
-		<h1>Alpenglow Guiding</h1>
-		<h2>Learn to climb high, light and free.</h2>
+	<LandingHero />
 	</div>
 	<hr />
 	<Programs />
