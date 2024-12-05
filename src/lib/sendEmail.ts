@@ -1,11 +1,11 @@
 import { Resend } from "resend";
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export const sendEmail = async (name: string, email: string, htmlContent: string) => {
+export const sendEmail = async (name: string, email: string, htmlContent: string, from: string, to: string, key: string) => {
+    const resend = new Resend(key);
     const sendResend = await resend.emails.send({
-        from: import.meta.env.RESEND_FROM_EMAIL as string,
+        from: from,
         replyTo: email as string,
-        to: import.meta.env.RESEND_TO_EMAIL as string,
+        to: to,
         subject: `Submission from ${name}`,
         html: htmlContent,
     }); // If the message was sent successfully, return a 200 response

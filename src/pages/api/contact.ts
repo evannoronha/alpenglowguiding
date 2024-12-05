@@ -3,7 +3,10 @@ export const prerender = false; //This will not work without this line
 import type { APIRoute } from "astro";
 import { sendEmail } from "../../lib/sendEmail";
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async (context) => {
+  let request = context.request
+  let { RESEND_FROM_EMAIL, RESEND_TO_EMAIL, RESEND_API_KEY } = context.locals.runtime.env
+
   const data = await request.formData();
   const name = data.get("name") as string;
   const email = data.get("email") as string;
@@ -30,5 +33,5 @@ export const POST: APIRoute = async ({ request }) => {
   <p><strong>Phone:</strong> ${phone}</p>
   <p><strong>Message:</strong> ${message}</p>`;
 
-  return sendEmail(name, email, htmlContent);
+  return sendEmail(name, email, htmlContent, RESEND_FROM_EMAIL, RESEND_TO_EMAIL, RESEND_API_KEY);
 }
