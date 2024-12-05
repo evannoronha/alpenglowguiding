@@ -5,31 +5,10 @@ import AboutTom from "../components/AboutTom.astro";
 import LandingHero from "../components/LandingHero.astro";
 import Certifications from "../components/Certifications.astro";
 import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="viewport" content="width=device-width" />
-	<meta charset="utf-8" />
-	<meta name="generator" content={Astro.generator} />
-	<title>Alpenglow Guiding</title>
-	<style>
-		body {
-			font-family: sans-serif;
-			margin: 0;
-			padding: 0;
-		}
-		.bio-image {
-			width: 50%;
-			float: left;
-		}
-		hr {
-			clear: both;
-		}
-	</style>
-</head>
-<body>
+<BaseLayout title="Home">
 	<LandingHero />
 	<hr />
 	<Programs />
@@ -41,4 +20,4 @@ import Footer from "../components/Footer.astro";
 	<ContactForm client:load />
 	<hr />
 	<Footer />
-</body>
+</BaseLayout>
