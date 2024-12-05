@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 jobs:
-  lint:
+  astro-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
