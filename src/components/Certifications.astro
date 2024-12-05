@@ -1,0 +1,16 @@
+---
+const title = "Certifications";
+const certifications = [
+    "NREMT: Emergency Medical Technician & Wilderness First Responder",
+    "AMGA: Apprentice Rock Guide & Apprentice Alpine Guide",
+    "A3: Recreational Level 2 & Partner Rescue Course"
+];
+---
+
+<h2>{title}</h2>
+<ul>
+    {certifications.map((certification) => (
+        <li>
+            <p>{certification}</p>
+        </li>
+    ))}
