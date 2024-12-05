@@ -24,6 +24,6 @@ jobs:
         run: npm run build
       - uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy
+          command: pages deploy --project-name=alpenglowguiding
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          gitHubToken: ${{ github.token }}
