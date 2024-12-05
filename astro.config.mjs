@@ -12,6 +12,7 @@ export default defineConfig({
       enabled: true
     }
   }),
+  output: "server",
 
   integrations: [react()]
 });
