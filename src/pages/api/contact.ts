@@ -5,6 +5,7 @@ import { sendEmail } from "../../lib/sendEmail";
 
 export const POST: APIRoute = async (context) => {
   let request = context.request
+  // @ts-ignore
   let { RESEND_FROM_EMAIL, RESEND_TO_EMAIL, RESEND_API_KEY } = context.locals.runtime.env
 
   const data = await request.formData();

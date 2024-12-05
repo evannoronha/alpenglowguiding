@@ -5,6 +5,5 @@ compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./dist"
 
 [vars]
-RESEND_API_KEY="re_aTWSbhYi_82ZRZnKugtapzsJs7uXfebYe"
 RESEND_FROM_EMAIL='contact-form@alpenglowguiding.com'
 RESEND_TO_EMAIL='evan@alpenglowguiding.com'
