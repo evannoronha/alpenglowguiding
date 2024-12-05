@@ -4,6 +4,10 @@ compatibility_date = "2024-11-06"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./dist"
 
-[vars]
+[env.production.vars]
+RESEND_FROM_EMAIL='contact-form@alpenglowguiding.com'
+RESEND_TO_EMAIL='tom@alpenglowguiding.com'
+
+[env.preview.vars]
 RESEND_FROM_EMAIL='contact-form@alpenglowguiding.com'
 RESEND_TO_EMAIL='evan@alpenglowguiding.com'
