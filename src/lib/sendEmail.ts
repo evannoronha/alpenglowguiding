@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 interface ISendEmail {
     email: string;
@@ -15,10 +16,11 @@ interface ISendEmail {
         user: process.env.EMAIL_SOURCE,
         pass: process.env.EMAIL_PASS,
       },
-    });
+    } as SMTPTransport.Options);
 
     let message = {
       from: process.env.EMAIL,
+      replyTo: props.email,
       to: process.env.EMAIL_DESTINATION,
       subject: props.subject,
       name: props.name,
