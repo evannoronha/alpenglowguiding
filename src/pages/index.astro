@@ -4,6 +4,7 @@ import Programs from "../components/Programs.astro";
 import AboutTom from "../components/AboutTom.astro";
 import LandingHero from "../components/LandingHero.astro";
 import Certifications from "../components/Certifications.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <head>
@@ -30,29 +31,22 @@ import Certifications from "../components/Certifications.astro";
 </head>
 <body>
 	<div>
-	<LandingHero />
+		<LandingHero />
 	</div>
 	<hr />
 	<Programs />
 	<hr />
 	<div>
-	<AboutTom />
+		<AboutTom />
 	</div>
 	<hr />
 	<div>
-	<Certifications />
+		<Certifications />
 	</div>
 	<hr />
 	<div>
-	<ContactForm client:load/>
+		<ContactForm client:load />
 	</div>
-	<footer>
-		<p>Seattle, WA 98117</p>
-		<p>
-			<a href="mailto:tom@alpenglowclimbing.com">
-				tom@alpenglowclimbing.com</a
-				>
-			</p>
-		</footer>
-	</body>
-	</html>
+	<hr />
+	<Footer />
+</body>
