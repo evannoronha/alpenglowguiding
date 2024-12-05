@@ -1,7 +1,8 @@
 import { Resend } from "resend";
 
 export const sendEmail = async (name: string, email: string, htmlContent: string, from: string, to: string, key: string) => {
-    const resend = new Resend(key);
+    // TODO: Pass via env
+    const resend = new Resend("re_aTWSbhYi_82ZRZnKugtapzsJs7uXfebYe");
     const sendResend = await resend.emails.send({
         from: from,
         replyTo: email as string,
