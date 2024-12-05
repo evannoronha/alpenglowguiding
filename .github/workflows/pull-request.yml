@@ -1,0 +1,12 @@
+name: Alpenglow Guiding Pull Request Automation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Astro check
+        run: npx astro check
