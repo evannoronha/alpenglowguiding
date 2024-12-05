@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import './ContactForm.css'
+import '../styles/ContactForm.css'
 
 export default function ContactForm() {
     const [responseMessage, setResponseMessage] = useState("");
