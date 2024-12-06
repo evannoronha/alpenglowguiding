@@ -1,41 +1,15 @@
 ---
 const title = "Our Programs";
 
-type Program = {
-    title: string;
-    description: string;
-};
-
-const programs = [
-    {
-        title: "Single-Pitch Rock",
-        description:
-            "Learn the skills to climb safely and enjoyably at crags the world over.",
-    },
-    {
-        title: "Multi-Pitch Rock",
-        description:
-            "Get some air under your feet! Our programs will teach you how to climb multi-pitch routes and get down safe.",
-    },
-    {
-        title: "Rock Rescue",
-        description:
-            "What happens if something goes wrong? Learn the skills to rescue a partner or yourself. Our courses will be tailored to your preferred style of climbing.",
-    },
-];
+const allPrograms = Object.values(import.meta.glob('../pages/programs/*.md', { eager: true }));
 ---
 
 <div>
     <h2>{title}</h2>
     <ul>
-        {
-            programs.map((program: Program) => (
-                <li>
-                    <strong>{program.title}</strong>
-                    <p>{program.description}</p>
-                </li>
-            ))
-        }
-        <ul></ul>
+        {allPrograms.map((post: any) => (
+            <a href={post.url}><li><strong>{post.frontmatter.title}</strong></li></a>
+            <p>{post.frontmatter.description}</p>
+        ))}
     </ul>
 </div>
