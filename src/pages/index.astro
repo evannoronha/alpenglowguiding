@@ -12,9 +12,11 @@ const sections = [
 	AboutTom,
 	Certifications,
 ]
+
+const description = "Alpenglow Guiding offers expert-led rock climbing adventures and technical skills training in and around Seattle, Washington."
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Home" description={description}>
 	{
 		sections.map((Section) => (
 			<>
