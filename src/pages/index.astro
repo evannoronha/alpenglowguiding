@@ -4,7 +4,6 @@ import Programs from "../components/Programs.astro";
 import AboutTom from "../components/AboutTom.astro";
 import LandingHero from "../components/LandingHero.astro";
 import Certifications from "../components/Certifications.astro";
-import Footer from "../components/Footer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const sections = [
@@ -12,7 +11,6 @@ const sections = [
 	Programs,
 	AboutTom,
 	Certifications,
-	ContactForm,
 ]
 ---
 
@@ -25,4 +23,5 @@ const sections = [
 			</>
 		))
 	}
+	<ContactForm client:load/>
 </BaseLayout>
