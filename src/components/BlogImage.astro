@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+const { src, alt } = Astro.props;
+---
+
+<style>
+    .post-image {
+        max-height: 600px;
+        max-width: fit-content;
+    }
+    .post-image-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<div class="post-image-container">
+    <Image
+        class="post-image"
+        width={600}
+        height={400}
+        src={src}
+        alt={alt}
+    />
+</div>
