@@ -9,6 +9,8 @@ import robotsTxt from 'astro-robots-txt';
 
 import sitemap from '@astrojs/sitemap';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
@@ -20,5 +22,5 @@ export default defineConfig({
   site: 'https://alpenglowguiding.com',
   integrations: [react(), robotsTxt({
     sitemap: false
-  }), sitemap()]
+  }), sitemap(), mdx()]
 });
