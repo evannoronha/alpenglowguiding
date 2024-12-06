@@ -5,6 +5,12 @@ html {
 
 a:visited { text-decoration: none; color: unset}
 
+img {
+    width: 100%;
+    height: auto;
+    max-width: 50rem;
+}
+
 body {
     margin: 0 auto;
     width: 100%;
@@ -22,5 +28,5 @@ hr {
 }
 h1 {
     margin: 1rem 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
 }

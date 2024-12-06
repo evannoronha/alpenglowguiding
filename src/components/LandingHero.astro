@@ -4,12 +4,34 @@ import heroImage from "../images/hero-image.jpg";
 ---
 
 <style>
-    img {
-        width: 100%;
-        height: auto;
-        max-width: 50rem;
+    .container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+    .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.darkened-image {
+    filter: brightness(0.5);
+}
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 1.5rem;
     }
+    h2 {
+        font-size: 1rem;
+}
 </style>
-<Image class="hero-image" src={heroImage} alt="Climber at Phun Rock" />
+<div class="container">
+<Image class="darkened-image" src={heroImage} alt="Climber at Phun Rock" />
+<div class="centered">
 <h1>Alpenglow Guiding</h1>
 <h2>Learn to climb high, light and free.</h2>
+</div>
+</div>
