@@ -3,16 +3,20 @@ import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
 ---
-
+<style>
+    .post-image {
+        max-height: 600px;
+        max-width: fit-content;
+    }
+</style>
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
     <article>
         <h1>{frontmatter.title}</h1>
         <p>Published on: {frontmatter.date.toString().slice(0, 10)}</p>
         <p><em>{frontmatter.description}</em></p>
         <p>Written by {frontmatter.author}</p>
-        <img
+        <img class="post-image"
             src={frontmatter.image.url}
-            width="300"
             alt={frontmatter.image.alt}
         />
         <slot />
