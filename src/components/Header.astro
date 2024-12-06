@@ -1,7 +1,80 @@
 ---
+import Hamburger from "./Hamburger.astro";
+
 ---
-<nav>
-<a href="/">Home</a>
-<a href="/#about">About</a>
-<a href="/blog/">Blog</a>
-</nav>
+<style>
+    nav {
+        width: 100%;
+        top: 5rem;
+        left: 48px;
+        padding: 15px 20px;;
+        display: none;
+        margin: 0;
+
+    }
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    nav a:hover {
+        background-color: #5a5a5a;
+        color: white;
+    }
+
+    .expanded {
+        display: unset;
+    }
+
+    .hamburger {
+        margin: 10px;
+        padding: 8px;
+        width: fit-content;
+        cursor: pointer;
+        border: 3px solid #5a5a5a;
+        justify-self: right;
+    }
+
+    .hamburger .line {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin: 5px;
+        background-color: #5a5a5a;
+    }
+
+    @media screen and (min-width: 636px) {
+        nav {
+            display: block;
+            position: static;
+            width: auto;
+            background: none;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 15px 20px;
+        }
+        .hamburger {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        import "../scripts/menu.js";
+    </script>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/blog/">Blog</a>
+    </nav>
