@@ -49,10 +49,14 @@
 
     @media screen and (min-width: 636px) {
         nav {
+            position: sticky;
+            top: 0;
+            padding: 6px 10px;
+            z-index: 1;
+            background: #e6ecf1;
             display: block;
-            position: static;
-            width: auto;
-            background: none;
+            width: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
         nav a {
@@ -63,17 +67,17 @@
             display: none;
         }
     }
-    </style>
-    <script>
-        import "../scripts/menu.js";
-    </script>
-        <div class="hamburger">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </div>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/#about">About</a>
-        <a href="/blog/">Blog</a>
-    </nav>
+</style>
+<script>
+    import "../scripts/menu.js";
+</script>
+<div class="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+</div>
+<nav>
+    <a href="/">Home</a>
+    <a href="/#about">About</a>
+    <a href="/blog/">Blog</a>
+</nav>
