@@ -3,10 +3,15 @@ import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
 ---
+
 <style>
     .post-image {
         max-height: 600px;
         max-width: fit-content;
+    }
+    .post-image-container {
+        display: flex;
+        justify-content: center;
     }
 </style>
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
@@ -15,10 +20,13 @@ const { frontmatter } = Astro.props;
         <p>Published on: {frontmatter.date.toString().slice(0, 10)}</p>
         <p><em>{frontmatter.description}</em></p>
         <p>Written by {frontmatter.author}</p>
-        <img class="post-image"
-            src={frontmatter.image.url}
-            alt={frontmatter.image.alt}
-        />
+        <div class="post-image-container">
+            <img
+                class="post-image"
+                src={frontmatter.image.url}
+                alt={frontmatter.image.alt}
+            />
+        </div>
         <slot />
     </article>
 </BaseLayout>
