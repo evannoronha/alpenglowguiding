@@ -8,7 +8,7 @@ const allPrograms = Object.values(import.meta.glob('../pages/programs/*.md', { e
     <h2>{title}</h2>
     <ul>
         {allPrograms.map((post: any) => (
-            <li><strong>{post.frontmatter.title}</strong></li>
+            <a href={post.url}><li><strong>{post.frontmatter.title}</strong></li></a>
             <p>{post.frontmatter.description}</p>
         ))}
     </ul>
