@@ -27,19 +27,19 @@ export default function ContactForm() {
             <form method="POST" onSubmit={submit}>
                 <label>
                     Email
-                    <input type="email" name="email" />
+                    <input type="email" name="email" required={true} />
                 </label>
                 <label>
                     Name
-                    <input type="text" name="name" />
+                    <input type="text" name="name" required={true} />
                 </label>
                 <label>
                     Phone Number
-                    <input type="tel" name="phone" />
+                    <input type="tel" name="phone" required={true} />
                 </label>
                 <label>
                     Message
-                    <textarea name="message"></textarea>
+                    <textarea name="message" required={true}></textarea>
                 </label>
                 <button type="submit">Send</button>
                 {responseMessage && <p>{responseMessage}</p>}
