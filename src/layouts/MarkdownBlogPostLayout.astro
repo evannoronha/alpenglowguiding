@@ -1,4 +1,5 @@
 ---
+import BlogImage from "../components/BlogImage.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
@@ -20,9 +21,7 @@ const { frontmatter } = Astro.props;
         <p>Published on: {frontmatter.date.toString().slice(0, 10)}</p>
         <p><em>{frontmatter.description}</em></p>
         <p>Written by {frontmatter.author}</p>
-        <div class="post-image-container">
-            <img
-                class="post-image"
+        <BlogImage
                 src={frontmatter.image.url}
                 alt={frontmatter.image.alt}
             />
