@@ -1,19 +1,73 @@
 ---
 const title = "Certifications";
+
+import Image from "astro/components/Image.astro";
+import nremtLogo from "../images/certifications/nremt_logo.svg";
+import amgaLogo from "../images/certifications/amga_logo.png";
+import a3Logo from "../images/certifications/a3_logo.png";
 const certifications = [
-    "NREMT: Emergency Medical Technician & Wilderness First Responder",
-    "AMGA: Apprentice Rock Guide & Apprentice Alpine Guide",
-    "A3: Recreational Level 2 & Partner Rescue Course",
+    {
+        issuingBody: "National Registry of Emergency Medical Technicians",
+        title: "Emergency Medical Technician & Wilderness First Responder",
+        image: {
+            src: nremtLogo,
+            alt: "Logo for the national registry of emergency medical technicians",
+        },
+    },
+    {
+        issuingBody: "American Mountain Guides Association",
+        title: "Apprentice Rock Guide & Apprentice Alpine Guide",
+        image: {
+            src: amgaLogo,
+            alt: "Logo for the american mountain guides association",
+        },
+    },
+    {
+        issuingBody: "American Avalanche Association",
+        title: "Recreational Level 2 & Partner Rescue Course",
+        image: {
+            src: a3Logo,
+            alt: "Logo for the american avalanche association",
+            style: "filter: invert(1);",
+        },
+    },
 ];
 ---
 
-<h2>{title}</h2>
-<ul>
+<style>
+    .certification-image {
+        width: 150px;
+        float: left;
+        margin: 0 1rem 1rem 0;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .certification-text {
+        align-content: center;
+    }
+</style>
+<div id="certification">
+    <h2>{title}</h2>
     {
         certifications.map((certification) => (
-            <li>
-                <p>{certification}</p>
-            </li>
+            <div>
+                <Image
+                    class="certification-image"
+                    src={certification.image.src}
+                    alt={certification.image.alt}
+                    style={certification.image.style}
+                />
+                <div class="certification-text">
+                    <p>
+                        <strong>{certification.issuingBody}</strong>
+                    </p>
+                    <p>{certification.title}</p>
+                </div>
+                <div class="clear" />
+            </div>
         ))
     }
-</ul>
+</div>
