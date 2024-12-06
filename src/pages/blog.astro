@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+---
+
+<body>
+  <BaseLayout title="Blog">
+    <div id="blog">
+      <h2>Blog</h2>
+      <p>
+        Welcome to the Alpenglow Guiding blog! Here, you'll find stories,
+        photos, and updates from our climbing adventures in the Cascades and
+        beyond. Check back often for the latest news!
+      </p>
+      <ul>
+        {console.log(allPosts)}
+        {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+      </ul>
+    </div>
+  </body>

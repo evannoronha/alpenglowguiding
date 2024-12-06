@@ -2,17 +2,11 @@
 import { Image } from "astro:assets";
 import bioImage from '../images/tom-headshot.jpg';
 ---
-<style>
-    .bio-image {
-        height: auto;
-        width: 50%;
-        float: left;
-    }
-</style>
+<div id="about" style="display: grid;">
 <h2>About Me</h2>
 <Image
-class="bio-image"
 src={bioImage}
+style={{ height: 'auto', width: '70%', justifySelf: 'center' }}
 alt="Tom Skoog holding a pair of skis in the mountains"
 />
 <p>
@@ -37,3 +31,4 @@ alt="Tom Skoog holding a pair of skis in the mountains"
     rock-solid foundation of climbing skills so you can confidently
     create your own adventure. Let's get started!
 </p>
+</div>
