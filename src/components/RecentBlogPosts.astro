@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+const posts = Object.values(
+    import.meta.glob("../pages/posts/*.{md,mdx}", { eager: true }),
+);
+
+console.log(posts);
+---
+<style>
+    #highlighted-posts-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .highlighted-post {
+        flex: 1;
+        margin: 10px;
+    }
+    .image-container {
+        height: 230px;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    @media screen and (max-width: 700px) {
+        #highlighted-posts-container {
+            flex-direction: column;
+        }
+        .image-container {
+            height: auto;
+        }
+
+    }
+</style>
+<div id="recent-posts">
+    <h2>Recent Posts</h2>
+    <div id="highlighted-posts-container">
+        {
+            posts.map((post: any) => (
+                <div class="highlighted-post">
+                    <div class="image-container">
+                           <Image
+                           width={20}
+                           height={20}
+                           class="post-image"
+                src={post.frontmatter.image.url}
+                alt={post.frontmatter.image.alt}
+            />
+
+                        </div>
+                    <a href={post.url}>
+                        <h3>{post.frontmatter.title}</h3>
+                    </a>
+                    <p>{post.frontmatter.description}</p>
+                </div>
+            ))
+        }
+    </div>
+</div>
