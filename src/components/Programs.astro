@@ -1,15 +1,21 @@
 ---
 const title = "Our Programs";
 
-const allPrograms = Object.values(import.meta.glob('../pages/programs/*.md', { eager: true }));
+const allPrograms = Object.values(
+    import.meta.glob("../pages/programs/*.md", { eager: true }),
+);
 ---
 
 <div>
     <h2>{title}</h2>
     <ul>
-        {allPrograms.map((post: any) => (
-            <a href={post.url}><li><strong>{post.frontmatter.title}</strong></li></a>
-            <p>{post.frontmatter.description}</p>
-        ))}
+        {
+            allPrograms.map((post: any) => (
+                <li>
+                    <strong>{post.frontmatter.title}</strong>
+                    <p>{post.frontmatter.description}</p>
+                </li>
+            ))
+        }
     </ul>
 </div>
