@@ -14,12 +14,25 @@ textarea {
 }
 /* Style the submit button with a specific background color etc */
 button[type="submit"] {
-    background-color: #04aa6d;
-    color: white;
+    background-color: #00ca22;
+    color: rgb(0, 0, 0);
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: large;
+    width: 100%;
+    /* Full width */
+    margin-bottom: 16px; /* Bottom margin */
+    margin-top: 6px; /* Top margin */
+    transition-duration: 0.4s;
+    transition-property: background-color, color;
+    transition-timing-function: ease-in-out;
+}
+
+button[type="submit"]:active {
+    background-color: #45a049;
+    color: rgb(255, 255, 255);
 }
 
 /* When moving the mouse over the submit button, add a darker green color */
