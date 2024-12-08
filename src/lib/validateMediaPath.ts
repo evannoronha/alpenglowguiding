@@ -5,14 +5,10 @@ export default function validateMediaPath(prefix: string, fileExtension: string,
     }
 
     if (!path.endsWith(fileExtension)) {
-        throw new Error(`src must be a .${fileExtension} file.`);
-    }
-
-    if (!path) {
-        throw new Error("alt text is required.");
+        throw new Error(`src must be a .${fileExtension} file. Got ${path}`);
     }
 
     if (path.startsWith(`/${prefix}/`)) {
-        throw new Error(`Image src cannot start with /blogimages/. Got ${src}`);
+        throw new Error(`Image src cannot start with /blogimages/. Got ${path}`);
     }
 }
