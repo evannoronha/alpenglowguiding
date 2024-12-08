@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import validateMediaPath from "../lib/validateMediaPath";
 let { src, alt } = Astro.props;
 
@@ -20,7 +20,7 @@ validateMediaPath(BLOGIMAGES_DIR, "webp", src)
 </style>
 
 <div class="post-image-container">
-    <Image
+    <Picture
         class="post-image"
         width={600}
         height={400}
