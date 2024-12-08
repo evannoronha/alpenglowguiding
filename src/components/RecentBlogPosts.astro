@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import BlogImage from "./BlogImage.astro";
 const posts = Object.values(
     import.meta.glob("../pages/posts/*.{md,mdx}", { eager: true }),
 );
@@ -38,7 +39,7 @@ console.log(posts);
             posts.map((post: any) => (
                 <div class="highlighted-post">
                     <div class="image-container">
-                           <Image
+                           <BlogImage
                            width={20}
                            height={20}
                            class="post-image"

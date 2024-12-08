@@ -1,5 +1,11 @@
 ---
+import validateMediaPath from "../lib/validateMediaPath";
+
 const src = Astro.props.src;
+
+const BLOGVIDEOS_DIR = "/blogimages/";
+
+validateMediaPath(BLOGVIDEOS_DIR, "webm", src);
 ---
 <style>
 .video-container {
@@ -18,7 +24,7 @@ const src = Astro.props.src;
 </style>
 <div class="video-container">
 <video controls muted autoplay={true}>
-    <source src={src} type="video/webm" />
+    <source src={BLOGVIDEOS_DIR + src} type="video/webm" />
  </video>
 </div>
 
