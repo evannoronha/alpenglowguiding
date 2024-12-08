@@ -23,7 +23,7 @@ validateMediaPath(BLOGVIDEOS_DIR, "webm", src);
 }
 </style>
 <div class="video-container">
-<video preload="none" controls muted autoplay={false}>
+<video preload="metadata" controls muted autoplay={false}>
     <source src={BLOGVIDEOS_DIR + src} type="video/webm" />
  </video>
 </div>
