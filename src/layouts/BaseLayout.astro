@@ -1,19 +1,33 @@
 ---
+import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 const { title, description } = Astro.props;
+
+let displayTitle = `Alpenglow Guiding | ${title}`;
+let openGraph = {
+	basic: {
+		title: displayTitle,
+		type: "website",
+		image:"/peak-icon.svg",
+		url: Astro.site,
+	},
+};
 ---
 
 <html lang="en">
 	<head>
+		<SEO
+			title={displayTitle}
+			description={description}
+			openGraph={openGraph}
+		/>
 		<meta charset="utf-8" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/peak-icon.svg" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Alpenglow Guiding | {title}</title>
 	</head>
 	<body>
 		<Header />
