@@ -1,24 +1,25 @@
 ---
+
 ---
+
 <style>
     nav {
         width: 100%;
         top: 5rem;
-        left: 48px;
-        padding: 15px 20px;;
+        padding: 15px 20px;
         display: none;
         margin: 0;
-
     }
     nav a {
+        border-radius: 10px;
         display: block;
         text-align: center;
         padding: 10px 0;
         text-decoration: none;
         font-size: 1.2rem;
         font-weight: bold;
-        text-transform: uppercase;
-        text-decoration: none; color: unset;
+        text-decoration: none;
+        color: unset;
     }
 
     nav a:hover {
@@ -26,17 +27,27 @@
         color: white;
     }
 
-    .expanded {
-        display: unset;
+    .hamburger-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
 
     .hamburger {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .hamburger span {
+        display: block;
         margin: 10px;
         padding: 8px;
-        width: fit-content;
         cursor: pointer;
         border: 3px solid #5a5a5a;
-        justify-self: right;
+        border-radius: 10px;
     }
 
     .hamburger .line {
@@ -47,14 +58,29 @@
         background-color: #5a5a5a;
     }
 
+    nav a.call-to-action {
+        background-color: #5a5a5a;
+        color: white;
+    }
+
+    nav a.call-to-action:hover {
+        background-color: #4a4a4a;
+    }
+
+    @media screen and (max-width: 636px) {
+        .expanded {
+            display: unset;
+        }
+    }
+
     @media screen and (min-width: 636px) {
         nav {
+            display: flex;
             position: sticky;
             top: 0;
-            padding: 6px 10px;
+            padding: 15px;
             z-index: 1;
             background: #e6ecf1;
-            display: block;
             width: 100%;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
@@ -63,21 +89,48 @@
             display: inline-block;
             padding: 15px 20px;
         }
+
         .hamburger {
             display: none;
+        }
+
+        nav a {
+            display: block;
+        }
+
+        .nav-left {
+            display: flex;
+            flex: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
         }
     }
 </style>
 <script>
-    import "../scripts/menu.js";
+    document.querySelector(".hamburger")?.addEventListener("click", () => {
+        document.querySelector("nav")?.classList.toggle("expanded");
+    });
 </script>
-<div class="hamburger">
-    <span class="line"></span>
-    <span class="line"></span>
-    <span class="line"></span>
+<div class="hamburger-wrapper">
+    <div class="hamburger">
+        <span>menu</span>
+    </div>
 </div>
+
 <nav>
-    <a href="/">Home</a>
-    <a href="/#about">About</a>
-    <a href="/blog/">Blog</a>
+    <div class="nav-left">
+        <span><a href="/">Home</a></span>
+    </div>
+    <div class="nav-right">
+        <span>
+            <a class="nav-right" href="/blog/">Blog</a>
+        </span>
+        <span>
+            <a class="nav-right call-to-action" href="/#contact">Contact Us</a>
+        </span>
+    </div>
 </nav>
