@@ -18,7 +18,7 @@ export default defineConfig({
       enabled: true
     }
   }),
-  output: "server",
+  output: "static",
   site: 'https://alpenglowguiding.com',
   integrations: [react(), robotsTxt({
     sitemap: false
