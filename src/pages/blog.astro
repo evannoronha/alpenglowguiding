@@ -1,20 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const allPosts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true }));
+const allPosts = Object.values(
+  import.meta.glob("./posts/*.{md,mdx}", { eager: true }),
+);
 ---
 
-<body>
-  <BaseLayout title="Blog">
-    <div id="blog">
-      <h2>Blog</h2>
-      <p>
-        Welcome to the Alpenglow Guiding blog! Here, you'll find stories,
-        photos, and updates from our climbing adventures in the Cascades and
-        beyond. Check back often for the latest news!
-      </p>
-      <ul>
-        {console.log(allPosts)}
-        {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
-      </ul>
-    </div>
-  </body>
+<BaseLayout
+  title="Blog"
+  description="Blog archive for Alpenglow Guiding, a rock climbing instruction and guiding service in the Pacific Northwest. Here you will find stories, photos, trip reports, and current conditions from our time spent in the Cascades and eastern Washington"
+>
+  <div id="blog">
+    <h2>Blog</h2>
+    <p>
+      Welcome to the Alpenglow Guiding blog! Here, you'll find stories, photos,
+      and updates from our climbing adventures in the Cascades and beyond. Check
+      back often for the latest news!
+    </p>
+    <ul>
+      {console.log(allPosts)}
+      {
+        allPosts.map((post: any) => (
+          <li>
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
