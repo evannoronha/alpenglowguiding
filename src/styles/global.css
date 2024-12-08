@@ -23,7 +23,7 @@ body {
     box-sizing: border-box;
 }
 
-hr {
+.clear {
     clear: both;
 }
 
