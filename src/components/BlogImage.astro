@@ -1,7 +1,7 @@
 ---
-import { Image, Picture } from "astro:assets";
+import { Picture } from "astro:assets";
 import validateMediaPath from "../lib/validateMediaPath";
-let { src, alt } = Astro.props;
+let { src, alt, eager } = Astro.props;
 
 const BLOGIMAGES_DIR = "/blogimages/";
 
@@ -26,5 +26,6 @@ validateMediaPath(BLOGIMAGES_DIR, "webp", src)
         height={400}
         src={BLOGIMAGES_DIR + src}
         alt={alt}
+        loading={eager ? "eager" : "lazy"}
     />
 </div>

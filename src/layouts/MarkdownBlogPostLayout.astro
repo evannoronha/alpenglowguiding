@@ -21,7 +21,7 @@ const { frontmatter } = Astro.props;
         <p>Published on: {frontmatter.date.toString().slice(0, 10)}</p>
         <p><em>{frontmatter.description}</em></p>
         <p>Written by {frontmatter.author}</p>
-        <BlogImage src={frontmatter.image.url} alt={frontmatter.image.alt} />
+        <BlogImage src={frontmatter.image.url} alt={frontmatter.image.alt} eager={true}/>
     </article>
     <slot />
 </BaseLayout>
