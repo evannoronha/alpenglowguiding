@@ -23,7 +23,7 @@ export default function ContactForm() {
 
     return(
         <>
-            <h2>Contact</h2>
+            <h2 id="contact">Contact</h2>
             <form method="POST" onSubmit={submit}>
                 <label>
                     Email
