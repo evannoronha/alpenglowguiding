@@ -27,13 +27,27 @@
         color: white;
     }
 
+    .hamburger-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
     .hamburger {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    .hamburger span {
+        display: block;
         margin: 10px;
         padding: 8px;
-        width: fit-content;
         cursor: pointer;
         border: 3px solid #5a5a5a;
-        justify-self: right;
+        border-radius: 10px;
     }
 
     .hamburger .line {
@@ -85,7 +99,7 @@
         }
 
         .nav-left {
-        display: flex;
+            display: flex;
             flex: 1;
         }
 
@@ -97,10 +111,14 @@
     }
 </style>
 <script>
-    import "../scripts/menu.js";
+    document.querySelector(".hamburger")?.addEventListener("click", () => {
+        document.querySelector("nav")?.classList.toggle("expanded");
+    });
 </script>
-<div class="hamburger">
-    menu
+<div class="hamburger-wrapper">
+    <div class="hamburger">
+        <span>menu</span>
+    </div>
 </div>
 
 <nav>
@@ -109,6 +127,9 @@
     </div>
     <div class="nav-right">
         <span><a class="nav-right" href="/blog/">Blog</a></span>
-        <span><a class="nav-right call-to-action" href="/#contact">Contact Us</a></span>
-    </div>
-</nav>
+        <span
+        ><a class="nav-right call-to-action" href="/#contact">Contact Us</a
+            ></span
+            >
+        </div>
+    </nav>
