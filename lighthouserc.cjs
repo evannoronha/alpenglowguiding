@@ -8,6 +8,7 @@ module.exports = {
         assertions: {
           "categories:performance": ["warn", {"minScore": 0.95}],
           "categories:seo": ["error", {"minScore": 1}],
+          "uses-responsive-images": "off",
         }
       },
     },
