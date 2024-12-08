@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
-const { src, alt } = Astro.props;
+import validateMediaPath from "../lib/validateMediaPath";
+let { src, alt } = Astro.props;
+
+const BLOGIMAGES_DIR = "/blogimages/";
+
+validateMediaPath(BLOGIMAGES_DIR, "webp", src)
 ---
 
 <style>
@@ -19,7 +24,7 @@ const { src, alt } = Astro.props;
         class="post-image"
         width={600}
         height={400}
-        src={src}
+        src={BLOGIMAGES_DIR + src}
         alt={alt}
     />
 </div>
