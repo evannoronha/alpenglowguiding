@@ -2,6 +2,7 @@
 import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import GoogleAnayltics from "../components/GoogleAnalytics.astro";
 import "../styles/global.css";
 const { title, description } = Astro.props;
 
@@ -22,6 +23,7 @@ let openGraph = {
 
 <html lang="en">
 	<head>
+		<GoogleAnayltics />
 		<SEO
 			title={title}
 			titleTemplate="Alpenglow Guiding | %s"
