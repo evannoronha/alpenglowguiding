@@ -13,17 +13,22 @@ let openGraph = {
 		image:"/peak-icon.svg",
 		url: Astro.site,
 	},
+	optional: {
+		description: description,
+		siteName: "Alpenglow Guiding"
+	}
 };
 ---
 
 <html lang="en">
 	<head>
 		<SEO
-			title={displayTitle}
+			title={title}
+			titleTemplate="Alpenglow Guiding | %s"
 			description={description}
 			openGraph={openGraph}
+			charset="utf-8"
 		/>
-		<meta charset="utf-8" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/peak-icon.svg" />
 		<meta name="viewport" content="width=device-width" />
