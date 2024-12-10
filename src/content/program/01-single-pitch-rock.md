@@ -1,7 +1,7 @@
 ---
 name: "Single-Pitch Rock"
 price: 300
-description: "Learn the skills to climb safely and enjoyably at crags the world over."
+description: "A perfect place to get started. Learn the skills to climb safely and enjoyably at crags the world over."
 locations: ["Vantage (Frenchman Coulee)", "North Bend"]
 programType: "Skills Course"
 durationHoursDays: [3, 8]
