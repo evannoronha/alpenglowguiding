@@ -4,7 +4,7 @@ module.exports = {
         target: "temporary-public-storage",
       },
       collect: {
-        numberOfRuns: 1,
+        numberOfRuns: 3,
         staticDistDir: "dist",
         maxAutodiscoverUrls: 10,
       },
