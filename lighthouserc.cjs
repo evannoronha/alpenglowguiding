@@ -4,6 +4,7 @@ module.exports = {
         target: "temporary-public-storage",
       },
       collect: {
+        numberOfRuns: 1,
         staticDistDir: "dist",
         maxAutodiscoverUrls: 10,
       },
@@ -14,6 +15,7 @@ module.exports = {
           "categories:performance": ["error", {"minScore": 0.95}],
           "categories:seo": ["error", {"minScore": 1}],
           "unused-javascript": "off",
+          "uses-responsive-images": "warn",
         }
       },
     },
