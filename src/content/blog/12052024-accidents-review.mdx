@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownBlogPostLayout.astro
 title: Instructional Accidents from AINAC 2024
 date: 2024-12-06
 description: Lessons and musings from the most instructive inclusions in this year’s “Accidents in North American Climbing”.
