@@ -3,8 +3,8 @@ import { Picture } from "astro:assets";
 import bioImage from "../images/tom-headshot.webp";
 
 const imageSize = {
-    height: 476,
-    width: 635,
+    width: 476,
+    height: 635,
 };
 ---
 
@@ -15,6 +15,7 @@ const imageSize = {
         width={imageSize.width}
         height={imageSize.height}
         pictureAttributes={{ style: "display: grid" }}
+        densities={[1, 1.5, 2]}
         style={{ height: "auto", width: "70%", justifySelf: "center" }}
         alt="Tom Skoog holding a pair of skis in the mountains"
     />
