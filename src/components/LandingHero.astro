@@ -3,8 +3,8 @@ import { Picture } from "astro:assets";
 import heroImage from "../images/hero-image.webp";
 
 const imageSize = {
-    height: 1080,
-    width: 1920
+    width: 680,
+    height: 453,
 };
 ---
 
@@ -32,17 +32,19 @@ const imageSize = {
         h2 {
             font-size: 1rem;
         }
-    </style>
-    <div class="container">
-        <Picture
-            src={heroImage}
-            alt="Climber at Phun Rock"
-            width={imageSize.width}
-            height={imageSize.height}
-            class="darkened-image"
-        />
-        <div class="centered">
-            <h1>Alpenglow Guiding</h1>
-            <h2>Learn to climb high, light and free.</h2>
-        </div>
+    }
+</style>
+<div class="container">
+    <Picture
+        src={heroImage}
+        alt="Climber at Phun Rock"
+        width={imageSize.width}
+        height={imageSize.height}
+        class="darkened-image"
+        loading={"eager"}
+    />
+    <div class="centered">
+        <h1>Alpenglow Guiding</h1>
+        <h2>Learn to climb high, light and free.</h2>
     </div>
+</div>
