@@ -8,12 +8,7 @@ durationHoursDays: [3, 8]
 seasons: ["Winter", "Spring", "Fall"]
 clientToGuideRatio: 3
 minimumParticipants: 2
-photos: [
-    {
-        url: /programimages/multi-pitch-rock.webp,
-        alt: A climber following the fourth pitch of the South Face of Lexington Tower in Washington Pass, North Cascades National Park.
-    }
-]
+photo: ../../images/programimages/multi-pitch-rock.webp
 itinerary: [
     "Day 1: Meet at the Mountaineers climbing wall for an evening of ground school. We'll cover basic multipitch fundmentals like building anchors, belaying from above, managing rope at a transition.",
     "Day 2: We'll meet at one of our many local crags, and practice the skills you learned on the ground."

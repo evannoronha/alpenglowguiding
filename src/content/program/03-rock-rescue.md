@@ -8,6 +8,7 @@ durationHoursDays: [3, 8]
 seasons: ["Winter", "Spring", "Fall"]
 clientToGuideRatio: 3
 minimumParticipants: 2
+photo: ../../images/programimages/rock-rescue.webp
 photos: [
     {
         url: /programimages/rock-rescue.webp,

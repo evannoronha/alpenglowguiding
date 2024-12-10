@@ -46,10 +46,10 @@ const allPrograms = await getCollection("program");
                 <div class="program-wrapper">
                     <a href={`/programs/${post.id}`}>
                     <Picture
-                        src={post.data.photos[0]?.url}
-                        alt={post.data.photos[0]?.alt}
-                        width={100}
-                        height={100}
+                        src={post.data.photo}
+                        alt="${post.data.name} program"
+                        width={300}
+                        height={300}
                         class="program-image"
                     />
                     </a>

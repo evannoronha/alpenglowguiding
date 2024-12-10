@@ -3,6 +3,9 @@ module.exports = {
       upload: {
         target: "temporary-public-storage",
       },
+      collect: {
+        staticDistDir: "dist",
+      },
       assert: {
         preset: 'lighthouse:recommended',
         assertions: {
@@ -13,5 +16,4 @@ module.exports = {
         }
       },
     },
-  staticDistDir: "./dist",
   };

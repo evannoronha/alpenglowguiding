@@ -1,9 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BlogImage from "./BlogImage.astro";
 const posts = await getCollection("blog");
 
-console.log(posts);
+console.log(posts[0].data.image);
 ---
 
 <style>
@@ -37,12 +37,12 @@ console.log(posts);
             posts.map((post: any) => (
                 <div class="highlighted-post">
                     <div class="image-container">
-                        <BlogImage
+                        <Image
+                            src={post.data.image}
+                            alt={post.data.title}
                             width={20}
                             height={20}
                             class="post-image"
-                            src={post.data.image.url}
-                            alt={post.data.image.alt}
                         />
                     </div>
                     <a href={`/posts/${post.id}/`}>

@@ -19,10 +19,10 @@ const { frontmatter } = Astro.props;
         <div class="program-information">
             <Picture
                 class="program-image"
-                src={frontmatter.photos[0]?.url}
-                alt={frontmatter.photos[0]?.alt}
-                width={100}
-                height={100}
+                src={frontmatter.photo}
+                alt=`${frontmatter.name} program`
+                width={570}
+                height={434}
             />
             <p><em>{frontmatter.description}</em></p>
         </div>
