@@ -10,25 +10,22 @@ const { frontmatter } = Astro.props;
         width: 50%;
         height: auto;
         object-fit: cover;
-
     }
 </style>
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+<BaseLayout title={frontmatter.name} description={frontmatter.description}>
     <article>
         <h1>{frontmatter.name}</h1>
         <div class="program-information">
-        <Picture
-            class="program-image"
-            src={frontmatter.photos[0]?.url}
-            alt={frontmatter.photos[0]?.alt}
-            width={100}
-            height={100}
-        />
-        <p><em>{frontmatter.description}</em></p>
-        <p><strong>Type:</strong> {frontmatter.programType}</p>
-            <p><strong>Price:</strong> ${frontmatter.price}</p>
-            </div>
+            <Picture
+                class="program-image"
+                src={frontmatter.photos[0]?.url}
+                alt={frontmatter.photos[0]?.alt}
+                width={100}
+                height={100}
+            />
+            <p><em>{frontmatter.description}</em></p>
+        </div>
         <slot />
     </article>
 </BaseLayout>

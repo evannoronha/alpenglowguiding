@@ -1,5 +1,5 @@
 ---
-name: "It Happens: Mitigating hazard and self-rescue"
+name: "Rock Rescue"
 price: 500
 description: "Climbing is dangerous. What happens if something goes wrong? Learn the skills to rescue a partner or yourself."
 locations: ["Vantage (Frenchman Coulee)", "North Bend"]

@@ -1,5 +1,5 @@
 ---
-name: "The basics: getting started on single-pitch rock routes"
+name: "Single-Pitch Rock"
 price: 300
 description: "Learn the skills to climb safely and enjoyably at crags the world over."
 locations: ["Vantage (Frenchman Coulee)", "North Bend"]

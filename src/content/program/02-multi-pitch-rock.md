@@ -1,5 +1,5 @@
 ---
-name: "Moving on Up: Multi-pitch climbing skills and tactics"
+name: "Multi-Ritch Rock"
 price: 300
 description: "Get some air under your feet! Our programs will teach you how to climb multi-pitch routes and get down safe."
 locations: ["Vantage (Frenchman Coulee)", "North Bend"]
