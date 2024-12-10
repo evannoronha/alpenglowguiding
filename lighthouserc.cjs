@@ -5,6 +5,7 @@ module.exports = {
       },
       collect: {
         staticDistDir: "dist",
+        maxAutodiscoverUrls: 10,
       },
       assert: {
         preset: 'lighthouse:recommended',
