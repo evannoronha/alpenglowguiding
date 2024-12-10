@@ -1,19 +1,14 @@
 ---
 name: "Single-Pitch Rock"
 price: 300
-description: "Learn the skills to climb safely and enjoyably at crags the world over."
+description: "A perfect place to get started. Learn the skills to climb safely and enjoyably at crags the world over."
 locations: ["Vantage (Frenchman Coulee)", "North Bend"]
 programType: "Skills Course"
 durationHoursDays: [3, 8]
 seasons: ["Winter", "Spring", "Fall"]
 clientToGuideRatio: 5
 minimumParticipants: 2
-photos: [
-    {
-        url: /programimages/single-pitch-rock.webp,
-        alt: Emilia climbs her first lead route in Mazama.
-    }
-]
+photo: ../../images/programimages/single-pitch-rock.webp
 itinerary: [
     "Day 1: Meet at the Mountaineers climbing wall for an evening of ground school. We'll cover basic rock climbing equipment, safety checks, and belay technique.",
     "Day 2: We'll meet at one of our many local crags, and practive the skills you practiced on the ground."

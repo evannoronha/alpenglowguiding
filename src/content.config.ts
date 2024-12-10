@@ -5,14 +5,11 @@ import { z, defineCollection } from "astro:content";
 // Define a `loader` and `schema` for each collection
 const blog = defineCollection({
     loader: glob({ pattern: '*', base: "src/content/blog/" }),
-    schema: z.object({
+    schema: ({ image }) => z.object({
       title: z.string(),
       date: z.date(),
       description: z.string(),
-      image: z.object({
-        url: z.string(),
-        alt: z.string()
-      }),
+      image: image(),
       author: z.string(),
       tags: z.array(z.string())
     })
@@ -20,7 +17,7 @@ const blog = defineCollection({
 
 const program = defineCollection({
   loader: glob({ pattern: '*', base: "src/content/program/" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
       name: z.string(),
       price: z.number(),
       description: z.string(),
@@ -30,10 +27,7 @@ const program = defineCollection({
       seasons: z.array(z.enum(["Winter", "Spring", "Summer", "Fall"])),
       clientToGuideRatio: z.number(),
       minimumParticipants: z.number(),
-      photos: z.array(z.object({
-          url: z.string(),
-          alt: z.string()
-        })),
+      photo: image(),
       itinerary: z.array(z.string()),
       prerequisites: z.string(),
       programTakeaways: z.array(z.string()),

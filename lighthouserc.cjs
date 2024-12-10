@@ -3,15 +3,20 @@ module.exports = {
       upload: {
         target: "temporary-public-storage",
       },
+      collect: {
+        numberOfRuns: 3,
+        staticDistDir: "dist",
+        maxAutodiscoverUrls: 10,
+      },
       assert: {
         preset: 'lighthouse:recommended',
+        includePassedAssertions: true,
         assertions: {
-          "categories:performance": ["warn", {"minScore": 0.95}],
+          "categories:performance": ["error", {"minScore": 0.95}],
           "categories:seo": ["error", {"minScore": 1}],
-          "uses-responsive-images": "off",
           "unused-javascript": "off",
+          "uses-responsive-images": "warn",
         }
       },
     },
-  staticDistDir: "./dist",
   };
