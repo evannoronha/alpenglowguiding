@@ -23,6 +23,7 @@ const { frontmatter } = Astro.props;
                 alt=`${frontmatter.name} program`
                 width={570}
                 height={434}
+                loading={"eager"}
             />
             <p><em>{frontmatter.description}</em></p>
         </div>
