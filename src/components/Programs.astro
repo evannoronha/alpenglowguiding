@@ -45,15 +45,17 @@ const allPrograms = await getCollection("program");
             allPrograms.map((post: any) => (
                 <div class="program-wrapper">
                     <a href={`/programs/${post.id}`}>
-                    <Picture
-                        src={post.data.photo}
-                        alt="${post.data.name} program"
-                        width={300}
-                        height={300}
-                        class="program-image"
-                    />
+                        <Picture
+                            src={post.data.photo}
+                            alt="${post.data.name} program"
+                            width={300}
+                            height={300}
+                            class="program-image"
+                        />
                     </a>
-                    <a href={`/programs/${post.id}`}><strong>{post.data.name}</strong></a>
+                    <a href={`/programs/${post.id}`}>
+                        <strong>{post.data.name}</strong>
+                    </a>
                     <p>{post.data.description}</p>
                 </div>
             ))
