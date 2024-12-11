@@ -20,7 +20,9 @@ export default defineConfig({
   }),
   output: "static",
   site: 'https://alpenglowguiding.com',
-  integrations: [react(), robotsTxt({
+  integrations: [react({
+    include: ['**/react/*'],
+  }), robotsTxt({
     sitemap: false
   }), sitemap(), mdx()]
 });

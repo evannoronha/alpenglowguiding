@@ -6,18 +6,23 @@ import Certifications from "../components/Certifications.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentBlogPosts from "../components/RecentBlogPosts.astro";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js?url";
+
 const sections = [
 	LandingHero,
 	Programs,
 	AboutTom,
 	Certifications,
 	RecentBlogPosts,
-]
+];
 
-const description = "Alpenglow Guiding offers expert-led rock climbing adventures and technical skills training in and around Seattle, Washington."
+const description =
+	"Alpenglow Guiding offers expert-led rock climbing adventures and technical skills training in and around Seattle, Washington.";
 ---
 
 <BaseLayout title="Home" description={description}>
+	<script src={bootstrap}></script>
 	{
 		sections.map((Section) => (
 			<>

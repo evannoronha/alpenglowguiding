@@ -1,9 +1,11 @@
 ---
 import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/react/Header";
 import GoogleAnayltics from "../components/GoogleAnalytics.astro";
 import "../styles/global.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const { title, description } = Astro.props;
 
 let displayTitle = `Alpenglow Guiding | ${title}`;
@@ -11,13 +13,13 @@ let openGraph = {
 	basic: {
 		title: displayTitle,
 		type: "website",
-		image:"/peak-icon.svg",
+		image: "/peak-icon.svg",
 		url: Astro.site,
 	},
 	optional: {
 		description: description,
-		siteName: "Alpenglow Guiding"
-	}
+		siteName: "Alpenglow Guiding",
+	},
 };
 ---
 
@@ -31,13 +33,16 @@ let openGraph = {
 			openGraph={openGraph}
 			charset="utf-8"
 		/>
-		<link rel="sitemap" href="/sitemap-index.xml" />
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+			crossorigin="anonymous"></script>
 		<link rel="icon" type="image/svg+xml" href="/peak-icon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<Header />
+		<Header client:only="react" />
 		<slot />
 		<Footer />
 	</body>
