@@ -1,7 +1,6 @@
 ---
 import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
-import { Debug } from "astro:components";
 const title = "Our Programs";
 
 const allPrograms = await getCollection("program").then((posts) =>
