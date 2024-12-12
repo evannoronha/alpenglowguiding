@@ -13,10 +13,11 @@ const allPrograms = await getCollection("program").then((posts) =>
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-around;
     }
     .program-wrapper {
         width: 31%;
-        padding: 15px;
+        flex-basis: min-content;
         margin: 10px;
         display: flex;
     }
@@ -41,31 +42,6 @@ const allPrograms = await getCollection("program").then((posts) =>
         border: 1px solid black 10px;
         box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
         transition: box-shadow 0.3s ease-in-out;
-    }
-
-    @media screen and (max-width: 1024px) {
-        .program-wrapper {
-            width: 47%;
-        }
-    }
-
-    @media screen and (max-width: 730px) {
-        .program-wrapper {
-            width: 100%;
-        }
-        .program-image-wrapper {
-           width: 50%;
-        }
-        .program-wrapper a {
-            display: flex;
-            flex-direction: row;
-        }
-        .program-details {
-            display: flex;
-            width: 50%;
-            padding: 10px;
-            flex-direction: column;
-        }
     }
 </style>
 <div style="background-color: #99c898; padding: 20px;">
