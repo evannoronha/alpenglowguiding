@@ -35,6 +35,7 @@ const allPrograms = await getCollection("program").then((posts) =>
         text-decoration: none;
         color: black;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .program-wrapper a:hover {
@@ -52,23 +53,18 @@ const allPrograms = await getCollection("program").then((posts) =>
     @media screen and (max-width: 730px) {
         .program-wrapper {
             width: 100%;
-            padding: 5px;
+        }
+        .program-image-wrapper {
+           width: 50%;
         }
         .program-wrapper a {
             display: flex;
             flex-direction: row;
-            gap: 1em
-        }
-        .program-image {
-            width: 100%;
-            height: 100%;
-        }
-        .program-image-wrapper {
-            width: 100%;
-            height: 200px;
         }
         .program-details {
             display: flex;
+            width: 50%;
+            padding: 10px;
             flex-direction: column;
         }
 </style>
