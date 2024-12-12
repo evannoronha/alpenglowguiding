@@ -12,12 +12,12 @@ img {
 a {
     transition: color 0.2s ease-in-out;
     text-decoration: underline;
-    color: blue;
     line-height: 1.5;
+    color: #000;
 }
 a:visited {
     text-decoration: none;
-    color: blue;
+    color: black
 }
 a:hover {
     color: #007bff;
