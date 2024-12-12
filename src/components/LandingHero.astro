@@ -1,18 +1,16 @@
 ---
 import { Picture } from "astro:assets";
-import heroImage from "../images/hero-image.webp";
-
-const imageSize = {
-    width: 680,
-    height: 453,
-};
+import heroImage from "../images/hero-image.jpg";
 ---
 
 <style>
     .container {
+        height: 100%;
+        width: auto;
         position: relative;
         text-align: center;
         color: white;
+        overflow: hidden;
     }
     .centered {
         position: absolute;
@@ -24,22 +22,17 @@ const imageSize = {
     .darkened-image {
         filter: brightness(0.5);
     }
-
-    @media screen and (max-width: 400px) {
-        h1 {
-            font-size: 1.5rem;
-        }
-        h2 {
-            font-size: 1rem;
-        }
-    }
 </style>
 <div class="container">
     <Picture
         src={heroImage}
         alt="Climber at Phun Rock"
-        width={imageSize.width}
-        height={imageSize.height}
+        width={1200}
+        height={800}
+        densities={[1, 1.25, 1.5, 1.75, 2]}
+        pictureAttributes={{
+            style: "position: relative;bottom: 10%",
+        }}
         class="darkened-image"
         loading={"eager"}
     />

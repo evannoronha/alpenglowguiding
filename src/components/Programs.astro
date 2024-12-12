@@ -57,9 +57,9 @@ const allPrograms = await getCollection("program").then((posts) =>
             flex-direction: column;
         }
 </style>
-<div>
+<div style="background-color: #99c898; padding: 20px;">
     <h2>{title}</h2>
-    <div class="programs-container">
+    <div class="programs-container" >
         {
             allPrograms.map((post: any) => (
                 <div class="program-wrapper">
