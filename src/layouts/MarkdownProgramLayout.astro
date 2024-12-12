@@ -1,45 +1,12 @@
 ---
-import { Picture } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 
 const { frontmatter } = Astro.props;
-
-const imageSize = {
-    height: 887,
-    width: 665,
-};
 ---
-
-<style define:vars=({imageSize})>
-    .program-image {
-        object-fit: cover;
-    }
-    .program-information {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .image-wrapper {
-        aspect-ratio: {imageSize.width} / {imageSize.height};
-    }
-</style>
-
 <BaseLayout title={frontmatter.name} description={frontmatter.description}>
     <article>
         <h1>{frontmatter.name}</h1>
         <div class="program-information">
-            <div class="image-wrapper">
-                <Picture
-                    class="program-image"
-                    src={frontmatter.photos[0]}
-                    alt=`${frontmatter.name} program`
-                    width={imageSize.width}
-                    height={imageSize.height}
-                    densities={[1, 1.25, 1.5, 1.75, 2]}
-                    loading={"eager"}
-                />
-            </div>
             <p><em>{frontmatter.description}</em></p>
         </div>
         <slot />
