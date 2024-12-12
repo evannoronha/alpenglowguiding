@@ -16,20 +16,31 @@ const allPrograms = await getCollection("program").then((posts) =>
         flex-wrap: wrap;
     }
     .program-wrapper {
-        border: 1px solid black;
-        cursor: pointer;
         width: 31%;
         padding: 15px;
         margin: 10px;
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
     }
     .program-image-wrapper {
         width: 300px;
         height: 350px;
         overflow: hidden;
+    }
+
+    .program-wrapper a {
+        border: 1px solid black;
+        padding: 10px;
+        display: inherit;
+        flex-direction: column;
+        text-decoration: none;
+        color: black;
+        align-items: center;
+    }
+
+    .program-wrapper a:hover {
+        border: 1px solid black 10px;
+        box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
+        transition: box-shadow 0.3s ease-in-out;
     }
 
     @media screen and (max-width: 1024px) {
@@ -41,8 +52,12 @@ const allPrograms = await getCollection("program").then((posts) =>
     @media screen and (max-width: 730px) {
         .program-wrapper {
             width: 100%;
-            padding: 4%;
+            padding: 5px;
+        }
+        .program-wrapper a {
+            display: flex;
             flex-direction: row;
+            gap: 1em
         }
         .program-image {
             width: 100%;
@@ -63,6 +78,7 @@ const allPrograms = await getCollection("program").then((posts) =>
         {
             allPrograms.map((post: any) => (
                 <div class="program-wrapper">
+                    <a href={`/programs/${post.id}`}>
                     <div class="program-image-wrapper">
                         <Picture
                             src={post.data.photos[0]}
@@ -85,7 +101,7 @@ const allPrograms = await getCollection("program").then((posts) =>
                                 ${post.data.pricePerPerson.slice(-1)[0]}.
                             </em>
                         </p>
-                        <a href={`/programs/${post.id}`} class="cta">Learn more</a>
+                        </a>
                     </div>
                 </div>
             ))
