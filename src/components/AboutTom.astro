@@ -1,40 +1,72 @@
 ---
 import { Picture } from "astro:assets";
 import bioImage from "../images/tom-headshot.webp";
-
-const imageSize = {
-    width: 476,
-    height: 635,
-};
 ---
 
-<div id="about" style="display: grid;">
-    <h2>About Me</h2>
-    <Picture
-        src={bioImage}
-        width={imageSize.width}
-        height={imageSize.height}
-        pictureAttributes={{ style: "display: grid" }}
-        densities={[1, 1.25, 1.5, 1.75, 2]}
-        style={{ height: "auto", width: "70%", justifySelf: "center" }}
-        alt="Tom Skoog holding a pair of skis in the mountains"
-    />
-    <p>
-        My name is Tom Skoog. I'm a lifelong Seattleite who has spent much of my
-        life skiing and climbing throughout the Cascade Range. Growing up, I was
-        incredibly fortunate to benefit from quality mentorship in the
-        outdoors--an experience I believe everyone deserves access to.
-    </p>
-    <p>
-        To me, climbing is an art--a unique blend of place, people, and our
-        individual interpretations of adventure. Each climber brings their own
-        perspective, creating something entirely their own. At the same time,
-        the skills required for climbing are more like a craft. With the right
-        guidance and consistent, mindful practice, anyone can master them.
-    </p>
-    <p>
-        That's where I come in. My goal is to help you build a rock-solid
-        foundation of climbing skills so you can confidently create your own
-        adventure. Let's get started!
-    </p>
+<style>
+    .about-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .bio-image-container {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+    }
+    .bio-text-container {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .bio-image-container {
+            width: 100%;
+        }
+        .bio-text-container {
+            width: 100%;
+        }
+
+    }
+</style>
+
+<div id="about">
+    <div class="about-container">
+        <div class="bio-image-container">
+            <Picture
+                src={bioImage}
+                width={476}
+                height={635}
+                pictureAttributes={{ style: "display: grid" }}
+                densities={[1, 1.25, 1.5, 1.75, 2]}
+                style={{ height: "auto", width: "90%", justifySelf: "center" }}
+                alt="Tom Skoog holding a pair of skis in the mountains"
+            />
+        </div>
+        <div class="bio-text-container">
+            <h2>About Me</h2>
+            <p>
+                My name is Tom Skoog. I'm a lifelong Seattleite who has spent
+                much of my life skiing and climbing throughout the Cascade
+                Range. Growing up, I was incredibly fortunate to benefit from
+                quality mentorship in the outdoors--an experience I believe
+                everyone deserves access to.
+            </p>
+            <p>
+                To me, climbing is an art--a unique blend of place, people, and
+                our individual interpretations of adventure. Each climber brings
+                their own perspective, creating something entirely their own. At
+                the same time, the skills required for climbing are more like a
+                craft. With the right guidance and consistent, mindful practice,
+                anyone can master them.
+            </p>
+            <p>
+                That's where I come in. My goal is to help you build a
+                rock-solid foundation of climbing skills so you can confidently
+                create your own adventure. Let's get started!
+            </p>
+        </div>
+    </div>
 </div>
