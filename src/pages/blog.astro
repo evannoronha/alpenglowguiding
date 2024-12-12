@@ -3,12 +3,20 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const allPosts = await getCollection("blog");
 ---
-
+<style>
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 120ch;
+  }
+</style>
 <BaseLayout
   title="Blog"
   description="Blog archive for Alpenglow Guiding, a rock climbing instruction and guiding service in the Pacific Northwest. Here you will find stories, photos, trip reports, and current conditions from our time spent in the Cascades and eastern Washington"
 >
   <div id="blog">
+    <div class="blog-container">
     <h2>Blog</h2>
     <p>
       Welcome to the Alpenglow Guiding blog! Here, you'll find stories, photos,
@@ -25,5 +33,6 @@ const allPosts = await getCollection("blog");
         ))
       }
     </ul>
+    </div>
   </div>
 </BaseLayout>

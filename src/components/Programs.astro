@@ -1,63 +1,100 @@
 ---
 import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
-
 const title = "Our Programs";
 
-const allPrograms = await getCollection("program");
+const allPrograms = await getCollection("program")
+    .then((posts) =>
+        posts.sort((a, b) => a.data.sequenceNumber - b.data.sequenceNumber),
+    )
+    .then((posts) => posts.slice(0, 3));
 ---
 
 <style>
     .programs-container {
-        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
     .program-wrapper {
-        float: left;
-        width: 33.33%;
+        flex-basis: min-content;
+        margin: 10px;
+        display: flex;
+    }
+    .program-image-wrapper {
+        width: 300px;
+        height: 350px;
+        overflow: hidden;
+    }
+
+    .program-wrapper a {
+        border: 1px solid black;
+        padding: 10px;
         display: flex;
         flex-direction: column;
+        text-decoration: none;
+        color: black;
         align-items: center;
-        justify-content: center;
-        gap: 1rem;
-    }
-    .program-image {
-        width: 175px;
-        height: 175px;
-        object-fit: cover;
+        flex-wrap: wrap;
     }
 
-    @media screen and (max-width: 768px) {
-        .program-wrapper {
-            width: 100%;
-            gap: 1rem;
+    .program-wrapper a:hover {
+        border: 1px solid black 10px;
+        box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .program-details {
+        width: 300px;
+        padding: 10px;
+    }
+    /* from 600 to 1100 pixels wide, use flex column for the container and flex row for the wrapper */
+    @media screen and (min-width: 600px) and (max-width: 1100px) {
+        .programs-container {
+            flex-direction: column;
+        }
+        .program-wrapper a {
+            flex-direction: row;
         }
 
-        .program-wrapper p {
-            text-align: center;
-            margin-top: 0;
+        .program-image-wrapper {
+            width: 50%;
+        }
+
+        .program-details {
+            width: 50%;
         }
     }
 </style>
-<div>
+<div style="background-color: #99c898; padding: 20px;">
     <h2>{title}</h2>
     <div class="programs-container">
         {
             allPrograms.map((post: any) => (
                 <div class="program-wrapper">
                     <a href={`/programs/${post.id}`}>
-                        <Picture
-                            src={post.data.photo}
-                            alt="${post.data.name} program"
-                            width={300}
-                            height={300}
-                            densities={[1, 1.25, 1.5, 1.75, 2]}
-                            class="program-image"
-                        />
+                        <div class="program-image-wrapper">
+                            <Picture
+                                src={post.data.photos[0]}
+                                alt="${post.data.name} program"
+                                width={300}
+                                height={450}
+                                densities={[1, 1.25, 1.5, 1.75, 2]}
+                                class="program-image"
+                            />
+                        </div>
+                        <div class="program-details">
+                            <strong>{post.data.name}</strong>
+                            <p>{post.data.description}</p>
+                            <p>
+                                <em>
+                                    Prices start at $
+                                    {post.data.pricePerPerson.slice(-1)[0]}.
+                                </em>
+                            </p>
+                        </div>
                     </a>
-                    <a href={`/programs/${post.id}`}>
-                        <strong>{post.data.name}</strong>
-                    </a>
-                    <p>{post.data.description}</p>
                 </div>
             ))
         }

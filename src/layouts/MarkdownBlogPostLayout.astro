@@ -6,15 +6,14 @@ const { frontmatter } = Astro.props;
 ---
 
 <style>
-    .post-image {
-        max-height: 600px;
-        max-width: fit-content;
-    }
-    .post-image-container {
+    article {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 80ch;
     }
 </style>
+
 <BaseLayout title={frontmatter.title} description={frontmatter.description}>
     <article>
         <h1>{frontmatter.title}</h1>
@@ -28,6 +27,6 @@ const { frontmatter } = Astro.props;
             height={434}
             loading={"eager"}
         />
+        <slot />
     </article>
-    <slot />
 </BaseLayout>

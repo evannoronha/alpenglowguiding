@@ -1,33 +1,28 @@
 html {
-    background-color: #e6ecf1;
     font-family: sans-serif;
 }
 
-a:visited { text-decoration: none; color: unset}
-
 img {
+    overflow: hidden;
+    object-fit: cover;
     width: 100%;
-    height: auto;
-    max-width: 50rem;
+    height: 100%;
 }
 
-body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
+a {
+    transition: color 0.2s ease-in-out;
+    text-decoration: underline;
     line-height: 1.5;
+    color: #000;
 }
-
+a:visited {
+    text-decoration: none;
+    color: black
+}
+a:hover {
+    color: #007bff;
+}
 * {
     box-sizing: border-box;
-}
-
-.clear {
-    clear: both;
-}
-
-h1 {
-    margin: 1rem 0;
-    font-size: 3rem;
+    line-height: 1.2;
 }
