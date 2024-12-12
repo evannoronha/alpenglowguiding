@@ -19,10 +19,8 @@ const program = defineCollection({
   loader: glob({ pattern: '*', base: "src/content/program/" }),
   schema: ({ image }) => z.object({
     name: z.string(),
-      pricePerPerson: z.array(
-        z.tuple([
-          z.number(), z.number(),
-        ])),
+    sequenceNumber: z.number(),
+    pricePerPerson: z.array(z.number()),
       description: z.string(),
       locations: z.enum([
         "Vantage (Frenchman Coulee)",
@@ -31,7 +29,7 @@ const program = defineCollection({
         "The Mountaineers Wall, Seattle, WA"
       ]),
       programType: z.enum(["Guided Climb", "Skills Course"]),
-      durationDays: z.enum(["1/2 Day", "Full Day", "Multi-Day"]),
+      durationDays: z.enum(["1/2 Day", "Full Day", "2 Days", "Multi-Day"]),
       durationHours: z.number(),
       seasons: z.array(z.enum(["Winter", "Spring", "Summer", "Fall"])),
       clientToGuideRatio: z.number(),
