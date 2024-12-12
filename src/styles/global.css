@@ -1,5 +1,4 @@
 html {
-    background-color: #e6ecf1;
     font-family: sans-serif;
 }
 
@@ -11,9 +10,14 @@ img {
 }
 
 a {
-    text-decoration: none;
-    color: #000;
     transition: color 0.2s ease-in-out;
+    text-decoration: underline;
+    color: blue;
+    line-height: 1.5;
+}
+a:visited {
+    text-decoration: none;
+    color: blue;
 }
 
 a:hover {
