@@ -1,5 +1,5 @@
 ---
-
+import SetmoreButton from "./SetmoreButton.astro";
 ---
 
 <style>
@@ -23,8 +23,7 @@
     }
 
     nav a:hover {
-        background-color: #5a5a5a;
-        color: white;
+        background-color: #c3c3c3;
     }
 
     .hamburger-wrapper {
@@ -48,23 +47,6 @@
         cursor: pointer;
         border: 3px solid #5a5a5a;
         border-radius: 10px;
-    }
-
-    .hamburger .line {
-        display: block;
-        width: 40px;
-        height: 5px;
-        margin: 5px;
-        background-color: #5a5a5a;
-    }
-
-    nav a.call-to-action {
-        background-color: #5a5a5a;
-        color: white;
-    }
-
-    nav a.call-to-action:hover {
-        background-color: #4a4a4a;
     }
 
     @media screen and (max-width: 636px) {
@@ -115,6 +97,7 @@
         document.querySelector("nav")?.classList.toggle("expanded");
     });
 </script>
+
 <div class="hamburger-wrapper">
     <div class="hamburger">
         <span>menu</span>
@@ -127,10 +110,14 @@
     </div>
     <div class="nav-right">
         <span>
-            <a class="nav-right" href="/blog/">Blog</a>
+            <a href="/blog/">Blog</a>
         </span>
         <span>
-            <a class="nav-right call-to-action" href="/contact">Contact Us</a>
+            <a href="/contact">Contact Us</a>
+        </span>
+        <span>
+            <SetmoreButton />
+
         </span>
     </div>
 </nav>

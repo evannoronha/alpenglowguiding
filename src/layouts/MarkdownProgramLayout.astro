@@ -1,14 +1,137 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
+import { Accordion, AccordionItem } from "free-astro-components";
+import SetmoreButton from "../components/SetmoreButton.astro";
 
 const { frontmatter } = Astro.props;
 ---
+
+<style>
+    #program-page {
+        margin: 0px;
+        padding: 20px;
+    }
+    .above-the-fold {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .program-image-wrapper {
+        width: 600px;
+        height: 400px;
+        overflow: hidden;
+    }
+    .program-image {
+        object-fit: cover;
+    }
+    .program-details {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .description {
+        width: 100%;
+    }
+    .price {
+        width: 33%;
+    }
+    .duration {
+        width: 33%;
+    }
+    .ratio {
+        width: 33%;
+    }
+    .program-information {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .program-extended-info {
+        width: 100%;
+        padding: 10px;
+    }
+</style>
 <BaseLayout title={frontmatter.name} description={frontmatter.description}>
-    <article>
-        <h1>{frontmatter.name}</h1>
-        <div class="program-information">
-            <p><em>{frontmatter.description}</em></p>
+    <div id="program-page">
+        <div class="above-the-fold">
+            <div class="program-image-wrapper">
+                <Image
+                    src={frontmatter.photos[0]}
+                    alt={frontmatter.name}
+                    width={600}
+                    height={400}
+                    class="program-image"
+                    loading={"eager"}
+                />
+            </div>
+            <div class="program-information">
+                <h1>{frontmatter.name}</h1>
+                <div class="program-details">
+                    <div class="description">
+                        <em><p>{frontmatter.description}</p></em>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <strong
+                                >from ${
+                                    frontmatter.pricePerPerson.slice(-1)
+                                }</strong
+                            >
+                        </p>
+                        {
+                            frontmatter.pricePerPerson.map(
+                                (price: any, idx: number) => (
+                                    <span>
+                                        {idx + 1}:1 - ${price} per person
+                                        <br />
+                                    </span>
+                                ),
+                            )
+                        }
+                    </div>
+                    <div class="duration">
+                        <p>
+                            <strong>Duration:</strong>
+                            <p>
+                                {frontmatter.durationDays}<br />
+                                {frontmatter.durationHours} hours
+                            </p>
+                        </p>
+                    </div>
+                    <div class="ratio">
+                        <p><strong>Climber to guide ratio:</strong></p>
+                        <p>
+                            {frontmatter.clientToGuideRatio}:1 - minimum {
+                                frontmatter.minimumParticipants
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <SetmoreButton />
+                </div>
+            </div>
         </div>
-        <slot />
-    </article>
+    </div>
+    <div class="program-extended-info">
+        <h2>Program Details</h2>
+        <Accordion>
+            <AccordionItem title="Itinerary">
+                {frontmatter.itinerary.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+            <AccordionItem title="Prerequisites">
+                <p>{frontmatter.prerequisites}</p>
+            </AccordionItem>
+            <AccordionItem title="Curriculum">
+                {frontmatter.curriculum.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+            <AccordionItem title="What to Bring">
+                {frontmatter.requiredGear.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+        </Accordion>
+    </div>
 </BaseLayout>
