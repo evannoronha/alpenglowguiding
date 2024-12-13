@@ -23,8 +23,7 @@
     }
 
     nav a:hover {
-        background-color: #5a5a5a;
-        color: white;
+        background-color: #c3c3c3;
     }
 
     .hamburger-wrapper {
@@ -59,12 +58,11 @@
     }
 
     nav a.call-to-action {
-        background-color: #5a5a5a;
-        color: white;
+        background-color: #e2c091;
     }
 
     nav a.call-to-action:hover {
-        background-color: #4a4a4a;
+        background-color: #c5a981;
     }
 
     @media screen and (max-width: 636px) {
@@ -115,6 +113,13 @@
         document.querySelector("nav")?.classList.toggle("expanded");
     });
 </script>
+
+<script
+    id="setmore_script"
+    type="text/javascript"
+    src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
+></script>
+
 <div class="hamburger-wrapper">
     <div class="hamburger">
         <span>menu</span>
@@ -130,7 +135,16 @@
             <a class="nav-right" href="/blog/">Blog</a>
         </span>
         <span>
-            <a class="nav-right call-to-action" href="/contact">Contact Us</a>
+            <a class="nav-right" href="/contact">Contact Us</a>
+        </span>
+        <span>
+            <a
+                class="nav-right call-to-action"
+                id="Setmore_button_iframe"
+                href="https://booking.setmore.com/scheduleappointment/af30e871-bad6-4d78-b022-5a509807bea2"
+            >
+                Book Now!
+            </a>
         </span>
     </div>
 </nav>

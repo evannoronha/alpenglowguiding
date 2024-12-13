@@ -11,6 +11,11 @@ const allPrograms = await getCollection("program")
 ---
 
 <style>
+    #programs {
+        background-color: #c5a981;
+        margin: 0px;
+        padding: 20px;
+    }
     .programs-container {
         display: flex;
         flex-direction: row;
@@ -29,6 +34,8 @@ const allPrograms = await getCollection("program")
     }
 
     .program-wrapper a {
+        background-color: #e2c091;
+        border-radius: 10px;
         border: 1px solid black;
         padding: 10px;
         display: flex;
@@ -40,7 +47,6 @@ const allPrograms = await getCollection("program")
     }
 
     .program-wrapper a:hover {
-        border: 1px solid black 10px;
         box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
         transition: box-shadow 0.3s ease-in-out;
     }
@@ -67,7 +73,7 @@ const allPrograms = await getCollection("program")
         }
     }
 </style>
-<div style="background-color: #99c898; padding: 20px;">
+<div id="programs">
     <h2>{title}</h2>
     <div class="programs-container">
         {
