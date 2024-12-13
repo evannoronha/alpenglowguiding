@@ -1,4 +1,6 @@
 ---
+import SetmoreButton from "./SetmoreButton.astro";
+
 
 ---
 
@@ -47,22 +49,6 @@
         cursor: pointer;
         border: 3px solid #5a5a5a;
         border-radius: 10px;
-    }
-
-    .hamburger .line {
-        display: block;
-        width: 40px;
-        height: 5px;
-        margin: 5px;
-        background-color: #5a5a5a;
-    }
-
-    nav a.call-to-action {
-        background-color: #e2c091;
-    }
-
-    nav a.call-to-action:hover {
-        background-color: #c5a981;
     }
 
     @media screen and (max-width: 636px) {
@@ -114,13 +100,6 @@
     });
 </script>
 
-<script
-    defer
-    id="setmore_script"
-    type="text/javascript"
-    src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"
-></script>
-
 <div class="hamburger-wrapper">
     <div class="hamburger">
         <span>menu</span>
@@ -139,13 +118,8 @@
             <a class="nav-right" href="/contact">Contact Us</a>
         </span>
         <span>
-            <a
-                class="nav-right call-to-action"
-                id="Setmore_button_iframe"
-                href="https://booking.setmore.com/scheduleappointment/af30e871-bad6-4d78-b022-5a509807bea2"
-            >
-                Book Now!
-            </a>
+            <SetmoreButton />
+
         </span>
     </div>
 </nav>
