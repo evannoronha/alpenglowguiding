@@ -1,6 +1,6 @@
 ---
 name: "Multi-Pitch Rock Climbing Course"
-sequenceNumber: 4
+sequenceNumber: 3
 pricePerPerson:
   - 900
   - 650
