@@ -4,10 +4,10 @@ import { getCollection } from "astro:content";
 const title = "Our Programs";
 
 const allPrograms = await getCollection("program")
-    .then((posts) =>
+    .then((posts:any[]) =>
         posts.sort((a, b) => a.data.sequenceNumber - b.data.sequenceNumber),
     )
-    .then((posts) => posts.slice(0, 3));
+    .then((posts:any[]) => posts.slice(0, 3));
 ---
 
 <style>

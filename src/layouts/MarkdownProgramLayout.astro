@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
-import Accordion from "../components/Accordion.astro";
+import { Accordion, AccordionItem } from "free-astro-components";
 
 const { frontmatter } = Astro.props;
 ---
@@ -49,6 +49,10 @@ const { frontmatter } = Astro.props;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .program-extended-info {
+        width: 100%;
+        padding: 10px;
     }
 </style>
 <BaseLayout title={frontmatter.name} description={frontmatter.description}>
@@ -108,6 +112,32 @@ const { frontmatter } = Astro.props;
                 </div>
                 <div class="program-extended-info">
                     <h2>Program Details</h2>
+                    <Accordion>
+                        <AccordionItem title="Itinerary">
+                            {
+                                frontmatter.itinerary.map((item: any) => (
+                                    <p>{item}</p>
+                                ))
+                            }
+                        </AccordionItem>
+                        <AccordionItem title="Prerequisites">
+                            <p>{frontmatter.prerequisites}</p>
+                        </AccordionItem>
+                        <AccordionItem title="Curriculum">
+                            {
+                                frontmatter.curriculum.map((item: any) => (
+                                    <p>{item}</p>
+                                ))
+                            }
+                        </AccordionItem>
+                        <AccordionItem title="What to Bring">
+                            {
+                                frontmatter.requiredGear.map((item: any) => (
+                                    <p>{item}</p>
+                                ))
+                            }
+                        </AccordionItem>
+                    </Accordion>
                 </div>
             </div>
         </div>
