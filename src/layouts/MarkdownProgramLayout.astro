@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import { Accordion, AccordionItem } from "free-astro-components";
+import SetmoreButton from "../components/SetmoreButton.astro";
 
 const { frontmatter } = Astro.props;
 ---
@@ -52,19 +53,6 @@ const { frontmatter } = Astro.props;
     .program-extended-info {
         width: 100%;
         padding: 10px;
-    }
-
-    .call-to-action {
-        border-radius: 10px;
-        display: block;
-        text-align: center;
-        padding: 15px 20px;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-decoration: none;
-        color: unset;
-        background-color: #e2c091;
     }
 </style>
 <BaseLayout title={frontmatter.name} description={frontmatter.description}>
@@ -124,29 +112,26 @@ const { frontmatter } = Astro.props;
                     </div>
                 </div>
                 <div>
-                    <a
-                        href="https://booking.setmore.com/scheduleappointment/af30e871-bad6-4d78-b022-5a509807bea2"
-                        class="call-to-action">Book Now!</a
-                    >
+                    <SetmoreButton />
                 </div>
             </div>
         </div>
-        <div class="program-extended-info">
-            <h2>Program Details</h2>
-            <Accordion>
-                <AccordionItem title="Itinerary">
-                    {frontmatter.itinerary.map((item: any) => <p>{item}</p>)}
-                </AccordionItem>
-                <AccordionItem title="Prerequisites">
-                    <p>{frontmatter.prerequisites}</p>
-                </AccordionItem>
-                <AccordionItem title="Curriculum">
-                    {frontmatter.curriculum.map((item: any) => <p>{item}</p>)}
-                </AccordionItem>
-                <AccordionItem title="What to Bring">
-                    {frontmatter.requiredGear.map((item: any) => <p>{item}</p>)}
-                </AccordionItem>
-            </Accordion>
-        </div>
+    </div>
+    <div class="program-extended-info">
+        <h2>Program Details</h2>
+        <Accordion>
+            <AccordionItem title="Itinerary">
+                {frontmatter.itinerary.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+            <AccordionItem title="Prerequisites">
+                <p>{frontmatter.prerequisites}</p>
+            </AccordionItem>
+            <AccordionItem title="Curriculum">
+                {frontmatter.curriculum.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+            <AccordionItem title="What to Bring">
+                {frontmatter.requiredGear.map((item: any) => <p>{item}</p>)}
+            </AccordionItem>
+        </Accordion>
     </div>
 </BaseLayout>
