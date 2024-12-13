@@ -27,7 +27,6 @@ const { frontmatter } = Astro.props;
         object-fit: cover;
     }
     .program-details {
-        width: 600px;
         padding: 10px;
         display: flex;
         flex-direction: row;
@@ -37,13 +36,13 @@ const { frontmatter } = Astro.props;
         width: 100%;
     }
     .price {
-        width: 30%;
+        width: 33%;
     }
     .duration {
-        width: 30%;
+        width: 33%;
     }
     .ratio {
-        width: 30%;
+        width: 33%;
     }
     .program-information {
         display: flex;
@@ -54,6 +53,7 @@ const { frontmatter } = Astro.props;
         width: 100%;
         padding: 10px;
     }
+
 </style>
 <BaseLayout title={frontmatter.name} description={frontmatter.description}>
     <div id="program-page">
