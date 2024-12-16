@@ -1,7 +1,7 @@
 ---
 name: "Beginner Outdoor Rock Climbing"
 sequenceNumber: 1
-pricePerPerson: [400, 250, 200]
+pricePerPerson: [500, 250, 200]
 description: "This course is perfect for absolute beginners who have no prior climbing experience, inside or outside. Participants will learn basic climbing techniques, safety protocols, and equipment use."
 locations: "Index, WA"
 programType: "Skills Course"
