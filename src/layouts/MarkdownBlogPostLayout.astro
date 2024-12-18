@@ -27,6 +27,8 @@ const { frontmatter } = Astro.props;
             height={434}
             loading={"eager"}
         />
-        <slot />
+        <div id="content">
+            <slot />
+        </div>
     </article>
 </BaseLayout>
