@@ -20,9 +20,6 @@ article #content img {
     place-self: center;
 }
 
-article p {
-    display: grid;
-}
 
 a {
     transition: color 0.2s ease-in-out;
