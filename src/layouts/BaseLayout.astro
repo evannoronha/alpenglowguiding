@@ -25,7 +25,7 @@ let openGraph = {
 	<head>
 		<GoogleAnayltics />
 		<SEO
-			canonical={new URL(Astro.url.pathname, Astro.site)}
+			canonical={new URL(Astro.url.pathname.replace(/\.html$/, ""), Astro.site)}
 			title={title}
 			titleTemplate="Alpenglow Guiding | %s"
 			description={description}
