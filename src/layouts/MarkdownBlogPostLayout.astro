@@ -10,6 +10,7 @@ const { frontmatter } = Astro.props;
         display: flex;
         flex-direction: column;
         margin: 0 auto;
+        padding: 10px;
         max-width: 80ch;
     }
 </style>
@@ -23,10 +24,11 @@ const { frontmatter } = Astro.props;
         <Picture
             src={frontmatter.image}
             alt={frontmatter.title}
-            width={570}
-            height={434}
+            width={800}
             loading={"eager"}
         />
-        <slot />
+        <div id="content">
+            <slot />
+        </div>
     </article>
 </BaseLayout>
