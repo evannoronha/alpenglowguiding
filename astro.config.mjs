@@ -27,5 +27,8 @@ export default defineConfig({
     '/programs/01-single-pitch-rock/': '/programs/beginner-outdoor-rock-climbing/',
     '/programs/02-multi-pitch-rock/': '/programs/multi-pitch-rock-climbing/',
     '/programs/03-rock-rescue/':'/programs/rock-rescue/'
+  },
+  build: {
+    format: "file"
   }
 });
