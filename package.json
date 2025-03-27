@@ -29,6 +29,6 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241202.0",
     "@types/nodemailer": "^6.4.17",
-    "wrangler": "^3.92.0"
+    "wrangler": "^4.5.1"
   }
 }
