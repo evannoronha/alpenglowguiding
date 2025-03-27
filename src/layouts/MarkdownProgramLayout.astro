@@ -60,7 +60,7 @@ const { frontmatter } = Astro.props;
         <div class="above-the-fold">
             <div class="program-image-wrapper">
                 <Image
-                    src={frontmatter.photos[0]}
+                    src={frontmatter.image}
                     alt={frontmatter.name}
                     width={600}
                     height={400}
@@ -74,42 +74,6 @@ const { frontmatter } = Astro.props;
                     <div class="description">
                         <em><p>{frontmatter.description}</p></em>
                     </div>
-                    <div class="price">
-                        <p>
-                            <strong
-                                >from ${
-                                    frontmatter.pricePerPerson.slice(-1)
-                                }</strong
-                            >
-                        </p>
-                        {
-                            frontmatter.pricePerPerson.map(
-                                (price: any, idx: number) => (
-                                    <span>
-                                        {idx + 1}:1 - ${price} per person
-                                        <br />
-                                    </span>
-                                ),
-                            )
-                        }
-                    </div>
-                    <div class="duration">
-                        <p>
-                            <strong>Duration:</strong>
-                            <p>
-                                {frontmatter.durationDays}<br />
-                                {frontmatter.durationHours} hours
-                            </p>
-                        </p>
-                    </div>
-                    <div class="ratio">
-                        <p><strong>Climber to guide ratio:</strong></p>
-                        <p>
-                            {frontmatter.clientToGuideRatio}:1 - minimum {
-                                frontmatter.minimumParticipants
-                            }
-                        </p>
-                    </div>
                 </div>
                 <div>
                     <SetmoreButton />
@@ -121,16 +85,32 @@ const { frontmatter } = Astro.props;
         <h2>Program Details</h2>
         <Accordion>
             <AccordionItem title="Itinerary">
-                {frontmatter.itinerary.map((item: any) => <p>{item}</p>)}
-            </AccordionItem>
-            <AccordionItem title="Prerequisites">
-                <p>{frontmatter.prerequisites}</p>
-            </AccordionItem>
-            <AccordionItem title="Curriculum">
-                {frontmatter.curriculum.map((item: any) => <p>{item}</p>)}
+                {frontmatter.schedule.map((item: any) =>
+                <strong>{item.event}</strong>
+                <ul>
+                <p>{item.itinerary.map((item: any) => (
+                    <li>{item}</li>
+                ))}</p>
+                </ul>
+                )}
             </AccordionItem>
             <AccordionItem title="What to Bring">
-                {frontmatter.requiredGear.map((item: any) => <p>{item}</p>)}
+                <strong>Clothing & Gear</strong>
+                <ul>
+                {
+                    frontmatter.requiredEquipment.clothing.map((item: any) => (
+                        <li>{item}</li>
+                    ))
+                }
+                </ul>
+                <strong>Technical Equipment</strong>
+                <ul>
+                {
+                    frontmatter.requiredEquipment.technicalEquipment.map((item: any) => (
+                        <li>{item}</li>
+                    ))
+                }
+                </ul>
             </AccordionItem>
         </Accordion>
     </div>
