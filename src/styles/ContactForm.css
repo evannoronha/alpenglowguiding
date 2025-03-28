@@ -14,7 +14,7 @@ textarea {
 }
 /* Style the submit button with a specific background color etc */
 button[type="submit"] {
-    background-color: #00ca22;
+    background-color: #ca9e60;
     color: rgb(0, 0, 0);
     padding: 12px 20px;
     border: none;
@@ -30,12 +30,10 @@ button[type="submit"] {
     transition-timing-function: ease-in-out;
 }
 
-button[type="submit"]:active {
-    background-color: #45a049;
-    color: rgb(255, 255, 255);
+button[type="submit"]:hover {
+    background-color: #ba8d4e;
 }
 
-/* When moving the mouse over the submit button, add a darker green color */
-button[type="submit"]:hover {
-    background-color: #45a049;
+#contact-form {
+    margin: 10px;
 }
