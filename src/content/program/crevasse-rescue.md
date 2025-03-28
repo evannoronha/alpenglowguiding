@@ -48,11 +48,11 @@ schedule:
   - event: Day 2 Field Session (Full Day)
     itinerary:
       - Safety briefing & equipment check.
-      - 30 min Approach to practice site.
-      - 1 hour Self-arrest, team arrest, and rope team travel drills.
-      - 2 hour Snow/ice anchor construction, load transfer, and achieving “Baseline” rescue setup.
-      - 30 min Lunch break.
-      - 3 hours Full crevasse rescue scenarios with live loads.
-      - 30 min Course debrief, final Q&A, and return to trailhead.
+      - Approach to practice site.
+      - Self-arrest, team arrest, and rope team travel drills.
+      - Snow/ice anchor construction, load transfer, and achieving “Baseline” rescue setup.
+      - Break for lunch.
+      - Full crevasse rescue scenarios with live loads.
+      - Course debrief, final Q&A, and return to trailhead.
 image: "../../images/crevasse-rescue-hero.jpeg"
 ---
