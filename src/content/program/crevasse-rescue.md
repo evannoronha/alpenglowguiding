@@ -17,7 +17,7 @@ requiredEquipment:
     - Helmet
     - Harness
     - Ice axe (hammer recommended)
-    - Appropriate snow-travel equipment (Mountaineering boots, Ski boots)
+    - Appropriate snow-travel equipment (Mountaineering boots or Ski boots)
     - Crampons (optional)
     - Shovel (optional, recommended)
     - Backpack (20L minimum)
