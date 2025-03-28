@@ -7,7 +7,6 @@ const allPrograms = await getCollection("program")
     .then((posts:any[]) =>
         posts.sort((a, b) => a.data.sequenceNumber - b.data.sequenceNumber),
     )
-    .then((posts:any[]) => posts.slice(0, 3));
 ---
 
 <style>
@@ -82,7 +81,7 @@ const allPrograms = await getCollection("program")
                     <a href={`/programs/${post.id}`}>
                         <div class="program-image-wrapper">
                             <Picture
-                                src={post.data.photos[0]}
+                                src={post.data.image}
                                 alt="${post.data.name} program"
                                 width={300}
                                 height={450}
@@ -93,12 +92,6 @@ const allPrograms = await getCollection("program")
                         <div class="program-details">
                             <strong>{post.data.name}</strong>
                             <p>{post.data.description}</p>
-                            <p>
-                                <em>
-                                    Prices start at $
-                                    {post.data.pricePerPerson.slice(-1)[0]}.
-                                </em>
-                            </p>
                         </div>
                     </a>
                 </div>
