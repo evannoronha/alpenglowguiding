@@ -22,7 +22,7 @@ const { frontmatter } = Astro.props;
         <p><em>{frontmatter.description}</em></p>
         <p>Written by {frontmatter.author}</p>
         <Picture
-            src={frontmatter.image.url}
+            src={frontmatter.image.url || frontmatter.image}
             alt={frontmatter.title}
             width={800}
             height={600}
