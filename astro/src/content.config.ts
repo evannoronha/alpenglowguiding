@@ -82,6 +82,7 @@ const strapiBlog = defineCollection({
     const json = await res.json();
 
     // Map Strapi records -> Astro collection entries
+    // @ts-ignore
     return (json?.data ?? []).map((item: any) => {
       const img = item?.image;
 
