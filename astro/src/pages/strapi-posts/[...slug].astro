@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import MarkdownPostLayout from "../../layouts/MarkdownBlogPostLayout.astro";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("strapiBlog");
+    return posts.map((post) => ({
+        params: { slug: post.data.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+---
+
+<MarkdownPostLayout frontmatter={post.data}>
+    <!-- @ts-ignore: Unreachable code error> -->
+    <BlocksRenderer content={post.data.content} />
+</MarkdownPostLayout>
