@@ -28,7 +28,7 @@ const allPosts = await getCollection("strapiBlog");
       {
         allPosts.map((post: any) => (
           <li>
-            <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
+            <a href={`/strapi-posts/${post.data.slug}`}>{post.data.title}</a>
           </li>
         ))
       }
