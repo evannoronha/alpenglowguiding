@@ -1,4 +1,7 @@
 name: CI
+defaults:
+  run:
+    working-directory: ./astro
 on: [push]
 jobs:
   lhci:
