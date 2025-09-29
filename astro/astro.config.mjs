@@ -14,9 +14,6 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true
-    }
   }),
   output: "server",
   site: 'https://alpenglowguiding.com',
@@ -28,8 +25,5 @@ export default defineConfig({
       return item;
     }
   }), mdx()],
-  build: {
-    format: "file"
-  },
   trailingSlash: 'never'
 });
