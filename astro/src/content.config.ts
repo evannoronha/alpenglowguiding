@@ -88,7 +88,7 @@ const strapiBlog = defineCollection({
 
       return {
         // Required unique id for the collection entry
-        id: item?.documentId ?? String(item?.id),
+        id: item?.slug ?? String(item?.id),
 
         // Fields you’ll use in templates
         slug: item?.slug,
