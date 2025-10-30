@@ -1,7 +1,11 @@
 ---
-import { Picture } from "astro:assets";
-import { getCollection } from "astro:content";
-const posts = await getCollection("blog");
+import { getAllPosts } from "../lib/strapi";
+
+const allPosts = await getAllPosts();
+// Sort by date, newest first, and take the 3 most recent
+const posts = allPosts
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
+    .slice(0, 3);
 
 const imageSize = {
         height: 230,
@@ -37,22 +41,23 @@ const imageSize = {
     <h2>Recent Posts</h2>
     <div id="highlighted-posts-container">
         {
-            posts.map((post: any) => (
+            posts.map((post) => (
                 <div class="highlighted-post">
                     <div class="image-container">
-                        <Picture
-                            src={post.data.image}
-                            alt={post.data.title}
-                            densities={[1.5, 2]}
-                            width={imageSize.width}
-                            height={imageSize.height}
-                            class="post-image"
-                        />
+                        {post.image && (
+                            <img
+                                src={post.image.url}
+                                alt={post.image.alternativeText || post.title}
+                                width={imageSize.width}
+                                height={imageSize.height}
+                                class="post-image"
+                            />
+                        )}
                     </div>
-                    <a href={`/posts/${post.id}/`}>
-                        <h3>{post.data.title}</h3>
+                    <a href={`/strapi-posts/${post.slug}`}>
+                        <h3>{post.title}</h3>
                     </a>
-                    <p>{post.data.description}</p>
+                    <p>{post.description}</p>
                 </div>
             ))
         }
