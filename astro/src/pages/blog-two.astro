@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getAllPosts } from "../lib/strapi";
 
 const allPosts = await getAllPosts();
+// Sort posts by date, newest to oldest
+allPosts.sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
 <style>
@@ -30,6 +32,7 @@ const allPosts = await getAllPosts();
           allPosts.map((post) => (
             <li>
               <a href={`/strapi-posts/${post.slug}`}>{post.title}</a>
+              <span> - {post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </li>
           ))
         }
