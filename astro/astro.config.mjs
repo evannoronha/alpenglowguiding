@@ -15,7 +15,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   adapter: cloudflare({
   }),
-  output: "server",
+  output: "static",
   site: 'https://alpenglowguiding.com',
   integrations: [react(), robotsTxt({
     sitemap: false
@@ -25,5 +25,5 @@ export default defineConfig({
       return item;
     }
   }), mdx()],
-  trailingSlash: 'never'
+  trailingSlash: 'never',
 });
