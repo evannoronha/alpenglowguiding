@@ -15,7 +15,7 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   adapter: cloudflare({
   }),
-  output: "static",
+  output: "server",
   site: 'https://alpenglowguiding.com',
   integrations: [react(), robotsTxt({
     sitemap: false
@@ -26,4 +26,9 @@ export default defineConfig({
     }
   }), mdx()],
   trailingSlash: 'never',
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/static',
+    },
+  },
 });

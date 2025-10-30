@@ -1,20 +1,18 @@
 ---
-export const prerender = false;
-
-import { getEntry } from "astro:content";
 import MarkdownPostLayout from "../../layouts/MarkdownBlogPostLayout.astro";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import { getPostBySlug } from "../../lib/strapi";
 
 const { slug } = Astro.params;
 console.log(slug);
-// @ts-ignore
-const post: any = await getEntry("strapiBlog", slug);
 
-if (!post || !post.data) {
-  throw new Error(`Post not found: ${slug}`);
+const post = await getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect("/404");
 }
 ---
 
-<MarkdownPostLayout frontmatter={post.data}>
-  <BlocksRenderer content={post.data.content} />
+<MarkdownPostLayout frontmatter={post}>
+  <BlocksRenderer content={post.content} />
 </MarkdownPostLayout>

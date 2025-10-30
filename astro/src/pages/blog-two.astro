@@ -1,9 +1,8 @@
 ---
-export const prerender = true;
-
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const allPosts = await getCollection("strapiBlog");
+import { getAllPosts } from "../lib/strapi";
+
+const allPosts = await getAllPosts();
 ---
 
 <style>
@@ -20,22 +19,21 @@ const allPosts = await getCollection("strapiBlog");
 >
   <div id="blog">
     <div class="blog-container">
-    <h2>Blog</h2>
-    <p>
-      Welcome to the Alpenglow Guiding blog! Here, you'll find stories, photos,
-      and updates from our climbing adventures in the Cascades and beyond. Check
-      back often for the latest news!
-    </p>
-    <ul>
-      {console.log(allPosts)}
-      {
-        allPosts.map((post: any) => (
-          <li>
-            <a href={`/strapi-posts/${post.data.slug}`}>{post.data.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+      <h2>Blog</h2>
+      <p>
+        Welcome to the Alpenglow Guiding blog! Here, you'll find stories,
+        photos, and updates from our climbing adventures in the Cascades and
+        beyond. Check back often for the latest news!
+      </p>
+      <ul>
+        {
+          allPosts.map((post) => (
+            <li>
+              <a href={`/strapi-posts/${post.slug}`}>{post.title}</a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </BaseLayout>
