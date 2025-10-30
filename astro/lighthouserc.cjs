@@ -5,8 +5,11 @@ module.exports = {
       },
       collect: {
         numberOfRuns: 3,
-        staticDistDir: "dist",
         maxAutodiscoverUrls: 10,
+        startServerCommand: "npm run build && npm run serve:cf",
+        startServerReadyTimeout: 120000,
+        startServerReadyPattern: "Ready on.*http://localhost:8787.*",
+        url: ["http://localhost:8787/"],
       },
       assert: {
         preset: 'lighthouse:recommended',

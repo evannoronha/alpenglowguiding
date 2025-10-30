@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "serve:cf": "wrangler dev --port=8787 ./dist/_worker.js",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npm run build && wrangler pages deploy"
+    "deploy": "npm run build && BRANCH=$(git rev-parse --abbrev-ref HEAD) && if [ \"$BRANCH\" = \"main\" ]; then wrangler deploy; else BRANCH_CLEAN=$(echo $BRANCH | tr '/' '-' | cut -c1-25) && wrangler versions upload --tag $BRANCH_CLEAN --preview-alias $BRANCH_CLEAN; fi"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

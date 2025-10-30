@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -14,11 +14,8 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true
-    }
   }),
-  output: "static",
+  output: "server",
   site: 'https://alpenglowguiding.com',
   integrations: [react(), robotsTxt({
     sitemap: false
@@ -28,8 +25,8 @@ export default defineConfig({
       return item;
     }
   }), mdx()],
-  build: {
-    format: "file"
+  trailingSlash: 'never',
+  image: {
+    service: passthroughImageService(),
   },
-  trailingSlash: 'never'
 });
