@@ -1,8 +1,11 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const allPosts = await getCollection("strapiBlog");
 ---
+
 <style>
   .blog-container {
     display: flex;
