@@ -3,6 +3,7 @@
     "name": "alpenglowguiding",
     "main": "./dist/_worker.js/index.js",
     "compatibility_date": "2025-04-15",
+    "workers_dev": true,
     "compatibility_flags": [
         "nodejs_compat",
         "global_fetch_strictly_public"
