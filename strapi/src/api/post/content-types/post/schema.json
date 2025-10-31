@@ -38,10 +38,6 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "posts"
     },
-    "content": {
-      "type": "blocks",
-      "required": false
-    },
     "slug": {
       "type": "uid",
       "targetField": "title",
