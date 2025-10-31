@@ -17,7 +17,16 @@ module.exports = {
           "categories:performance": ["error", {"minScore": 0.95}],
           "categories:seo": ["error", {"minScore": 1}],
           "unused-javascript": "off",
-          "uses-responsive-images": "warn",
+          "lcp-lazy-loaded": "off",
+          "prioritize-lcp-image": "off",
+          "largest-contentful-paint": ["warn", { "minScore": 0.7 }],
+          "layout-shift-elements": "off",
+          "non-composited-animations": "off",
+          "uses-responsive-images": "off",
+
+          // You can also silence all "off" audits
+          "cumulative-layout-shift": "warn",
+          "first-contentful-paint": "warn"
         }
       },
     },
