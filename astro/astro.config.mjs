@@ -7,6 +7,8 @@ import react from '@astrojs/react';
 
 import mdx from '@astrojs/mdx';
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
@@ -19,7 +21,15 @@ export default defineConfig({
   }),
   output: "server",
   site: 'https://alpenglowguiding.com',
-  integrations: [react(), mdx()],
+  integrations: [
+    react(),
+    mdx(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ],
   trailingSlash: 'never',
   image: {
     domains: ['alpenglowguiding.com'],
