@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 const STRAPI_URL = 'https://celebrated-victory-07e0d5532b.strapiapp.com';
 
 export interface StrapiImage {
@@ -14,6 +16,11 @@ export interface StrapiImage {
   };
 }
 
+export interface StrapiAuthor {
+  name: string;
+  email?: string;
+}
+
 export interface StrapiPost {
   id: string;
   slug: string;
@@ -22,6 +29,7 @@ export interface StrapiPost {
   description: string | null;
   content: any[];
   image: StrapiImage | null;
+  author: StrapiAuthor | null;
   createdAt: string | null;
   updatedAt: string | null;
   publishedAt: string | null;
@@ -31,7 +39,16 @@ export interface StrapiPost {
  * Fetch all posts from Strapi
  */
 export async function getAllPosts(): Promise<StrapiPost[]> {
-  const res = await fetch(`${STRAPI_URL}/api/posts?populate=*`);
+  const query = qs.stringify({
+    populate: {
+      author: true,
+      image: true
+    }
+  }, {
+    encodeValuesOnly: true,
+  });
+
+  const res = await fetch(`${STRAPI_URL}/api/posts?${query}`);
 
   if (!res.ok) {
     throw new Error(`Strapi fetch failed: ${res.status} ${res.statusText}`);
@@ -40,7 +57,7 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
   const json: any = await res.json();
 
   return (json?.data ?? []).map((item: any) => {
-    const img = item?.image;
+    const author = item?.author;
 
     return {
       id: item?.slug ?? String(item?.id),
@@ -49,19 +66,16 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
       date: new Date(item?.date),
       description: item?.description ?? null,
       content: item?.content ?? [],
-      image: img
+      image: item?.image ?? null,
+      author: author
         ? {
-            url: img.url,
-            width: img.width,
-            height: img.height,
-            alternativeText: img.alternativeText ?? null,
-            caption: img.caption ?? null,
-            formats: img.formats ?? {},
+            name: author.username,
+            email: author.email,
           }
         : null,
-      createdAt: item?.createdAt ?? item?.created_at ?? null,
-      updatedAt: item?.updatedAt ?? item?.updated_at ?? null,
-      publishedAt: item?.publishedAt ?? item?.published_at ?? null,
+      createdAt: item?.createdAt ?? null,
+      updatedAt: item?.updatedAt ?? null,
+      publishedAt: item?.publishedAt ?? null,
     };
   });
 }
@@ -70,9 +84,21 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
  * Fetch a single post by slug from Strapi
  */
 export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
-  const res = await fetch(
-    `${STRAPI_URL}/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=*`
-  );
+  const query = qs.stringify({
+    filters: {
+      slug: {
+        $eq: slug
+      }
+    },
+    populate: {
+      author: true,
+      image: true
+    }
+  }, {
+    encodeValuesOnly: true,
+  });
+
+  const res = await fetch(`${STRAPI_URL}/api/posts?${query}`);
 
   if (!res.ok) {
     throw new Error(`Strapi fetch failed: ${res.status} ${res.statusText}`);
@@ -85,7 +111,7 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
   }
 
   const item = json.data[0];
-  const img = item?.image;
+  const author = item?.author;
 
   return {
     id: item?.slug ?? String(item?.id),
@@ -94,18 +120,15 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
     date: new Date(item?.date),
     description: item?.description ?? null,
     content: item?.content ?? [],
-    image: img
+    image: item?.image ?? null,
+    author: author
       ? {
-          url: img.url,
-          width: img.width,
-          height: img.height,
-          alternativeText: img.alternativeText ?? null,
-          caption: img.caption ?? null,
-          formats: img.formats ?? {},
+          name: author.username,
+          email: author.email,
         }
       : null,
-    createdAt: item?.createdAt ?? item?.created_at ?? null,
-    updatedAt: item?.updatedAt ?? item?.updated_at ?? null,
-    publishedAt: item?.publishedAt ?? item?.published_at ?? null,
+    createdAt: item?.createdAt ?? null,
+    updatedAt: item?.updatedAt ?? null,
+    publishedAt: item?.publishedAt ?? null,
   };
 }
