@@ -1,5 +1,5 @@
 ---
-import SetmoreButton from "./SetmoreButton.astro";
+// import SetmoreButton from "./SetmoreButton.astro";
 ---
 
 <style>
@@ -40,13 +40,26 @@ import SetmoreButton from "./SetmoreButton.astro";
         justify-content: flex-end;
     }
 
-    .hamburger span {
+    .hamburger button {
         display: block;
         margin: 10px;
         padding: 8px;
         cursor: pointer;
         border: 3px solid #5a5a5a;
         border-radius: 10px;
+        background: transparent;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #5a5a5a;
+    }
+
+    .hamburger button:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .hamburger button:focus-visible {
+        outline: 2px solid #5a5a5a;
+        outline-offset: 2px;
     }
 
     @media screen and (max-width: 636px) {
@@ -93,18 +106,29 @@ import SetmoreButton from "./SetmoreButton.astro";
     }
 </style>
 <script>
-    document.querySelector(".hamburger")?.addEventListener("click", () => {
-        document.querySelector("nav")?.classList.toggle("expanded");
+    const hamburgerBtn = document.querySelector(".hamburger button");
+    const nav = document.querySelector("nav");
+
+    hamburgerBtn?.addEventListener("click", () => {
+        const isExpanded = nav?.classList.toggle("expanded");
+        hamburgerBtn?.setAttribute("aria-expanded", String(isExpanded || false));
     });
 </script>
 
 <div class="hamburger-wrapper">
     <div class="hamburger">
-        <span>menu</span>
+        <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+        >
+            menu
+        </button>
     </div>
 </div>
 
-<nav>
+<nav id="main-navigation" aria-label="Main navigation">
     <div class="nav-left">
         <span><a href="/">Home</a></span>
     </div>

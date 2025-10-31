@@ -1,5 +1,6 @@
 ---
 import { SEO } from "astro-seo";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import GoogleAnayltics from "../components/GoogleAnalytics.astro";
@@ -27,6 +28,7 @@ let openGraph = {
 <html lang="en">
 	<head>
 		<GoogleAnayltics />
+		<ClientRouter />
 		<SEO
 			canonical={new URL(Astro.url.pathname.replace(/\.html$/, ""), Astro.site)}
 			title={title}
@@ -37,6 +39,7 @@ let openGraph = {
 		/>
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="icon" type="image/svg+xml" href="/peak-icon.svg" />
+		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 	</head>

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import { Accordion, AccordionItem } from "free-astro-components";
-import SetmoreButton from "../components/SetmoreButton.astro";
+// import SetmoreButton from "../components/SetmoreButton.astro";
 
 const { frontmatter } = Astro.props;
 ---
@@ -65,7 +65,8 @@ const { frontmatter } = Astro.props;
                     width={600}
                     height={400}
                     class="program-image"
-                    loading={"eager"}
+                    loading="eager"
+                    fetchpriority="high"
                 />
             </div>
             <div class="program-information">
