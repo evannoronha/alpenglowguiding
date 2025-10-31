@@ -31,7 +31,7 @@ allPosts.sort((a, b) => b.date.getTime() - a.date.getTime());
         {
           allPosts.map((post) => (
             <li>
-              <a href={`/strapi-posts/${post.slug}`}>{post.title}</a>
+              <a href={`/posts/${post.slug}`}>{post.title}</a>
               <span> - {post.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
             </li>
           ))
