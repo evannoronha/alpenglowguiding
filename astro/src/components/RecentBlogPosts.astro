@@ -50,6 +50,8 @@ const imageSize = {
                                 alt={post.image.alternativeText || post.title}
                                 width={imageSize.width}
                                 height={imageSize.height}
+                                loading="lazy"
+                                decoding="async"
                                 class="post-image"
                             />
                         )}

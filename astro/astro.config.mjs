@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -7,15 +7,35 @@ import react from '@astrojs/react';
 
 import mdx from '@astrojs/mdx';
 
+import partytown from '@astrojs/partytown';
+
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare({
+    // compile: Optimizes images at build time using Sharp
+    // Works for all local images and pre-rendered routes
+    // For SSR pages, local images work but aren't optimized on-demand
+    // To enable on-demand optimization, upgrade to 'cloudflare' imageService
+    // (requires Cloudflare Images to be enabled on your Cloudflare account)
+    imageService: 'compile',
   }),
   output: "server",
   site: 'https://alpenglowguiding.com',
-  integrations: [react(), mdx()],
+  integrations: [
+    react(),
+    mdx(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ],
   trailingSlash: 'never',
   image: {
-    service: passthroughImageService(),
+    domains: ['alpenglowguiding.com'],
+    remotePatterns: [{ protocol: 'https' }],
+  },
+  experimental: {
+    clientPrerender: true,
   },
 });
