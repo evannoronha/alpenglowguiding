@@ -1,6 +1,21 @@
 import qs from 'qs';
 
-const STRAPI_URL = 'https://celebrated-victory-07e0d5532b.strapiapp.com';
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || 'https://celebrated-victory-07e0d5532b.strapiapp.com';
+
+/**
+ * Helper function to ensure image URLs are absolute
+ */
+function getStrapiImageUrl(url: string | undefined | null): string | null {
+  if (!url) return null;
+
+  // If already absolute URL, return as is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  // If relative URL, prepend STRAPI_URL
+  return `${STRAPI_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+}
 
 export interface StrapiImage {
   url: string;
@@ -28,6 +43,7 @@ export interface StrapiPost {
   date: Date;
   description: string | null;
   content: any[];
+  body: any[];
   image: StrapiImage | null;
   author: StrapiAuthor | null;
   createdAt: string | null;
@@ -42,7 +58,10 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
   const query = qs.stringify({
     populate: {
       author: true,
-      image: true
+      image: true,
+      body: {
+        populate: '*'
+      }
     }
   }, {
     encodeValuesOnly: true,
@@ -58,6 +77,7 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
 
   return (json?.data ?? []).map((item: any) => {
     const author = item?.author;
+    const img = item?.image;
 
     return {
       id: item?.slug ?? String(item?.id),
@@ -66,7 +86,26 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
       date: new Date(item?.date),
       description: item?.description ?? null,
       content: item?.content ?? [],
-      image: item?.image ?? null,
+      body: item?.body ?? [],
+      image: img
+        ? {
+            url: getStrapiImageUrl(img.url) || '',
+            width: img.width,
+            height: img.height,
+            alternativeText: img.alternativeText ?? null,
+            caption: img.caption ?? null,
+            formats: img.formats
+              ? Object.keys(img.formats).reduce((acc, key) => {
+                  const format = img.formats[key];
+                  acc[key] = {
+                    ...format,
+                    url: getStrapiImageUrl(format.url) || format.url,
+                  };
+                  return acc;
+                }, {} as any)
+              : {},
+          }
+        : null,
       author: author
         ? {
             name: author.username,
@@ -92,7 +131,10 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
     },
     populate: {
       author: true,
-      image: true
+      image: true,
+      body: {
+        populate: '*'
+      }
     }
   }, {
     encodeValuesOnly: true,
@@ -112,6 +154,7 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
 
   const item = json.data[0];
   const author = item?.author;
+  const img = item?.image;
 
   return {
     id: item?.slug ?? String(item?.id),
@@ -120,7 +163,26 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
     date: new Date(item?.date),
     description: item?.description ?? null,
     content: item?.content ?? [],
-    image: item?.image ?? null,
+    body: item?.body ?? [],
+    image: img
+      ? {
+          url: getStrapiImageUrl(img.url) || '',
+          width: img.width,
+          height: img.height,
+          alternativeText: img.alternativeText ?? null,
+          caption: img.caption ?? null,
+          formats: img.formats
+            ? Object.keys(img.formats).reduce((acc, key) => {
+                const format = img.formats[key];
+                acc[key] = {
+                  ...format,
+                  url: getStrapiImageUrl(format.url) || format.url,
+                };
+                return acc;
+              }, {} as any)
+            : {},
+        }
+      : null,
     author: author
       ? {
           name: author.username,

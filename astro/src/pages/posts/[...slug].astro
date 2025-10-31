@@ -1,19 +1,20 @@
 ---
-import { getCollection, render } from "astro:content";
 import MarkdownPostLayout from "../../layouts/MarkdownBlogPostLayout.astro";
+import DynamicZoneRenderer from "../../components/DynamicZoneRenderer";
+import { getPostBySlug } from "../../lib/strapi";
 
-export async function getStaticPaths() {
-    const posts = await getCollection("blog");
-    return posts.map((post) => ({
-        params: { slug: post.id },
-        props: { post },
-    }));
+const { slug } = Astro.params;
+console.log(slug);
+
+const post = await getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect("/404");
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+console.log('Post body:', JSON.stringify(post.body, null, 2));
 ---
 
-<MarkdownPostLayout frontmatter={post.data}>
-    <Content />
+<MarkdownPostLayout frontmatter={post}>
+  <DynamicZoneRenderer content={post.body} client:load />
 </MarkdownPostLayout>

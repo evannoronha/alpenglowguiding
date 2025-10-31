@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_body_markdowns",
+  "info": {
+    "displayName": "markdown"
+  },
+  "options": {},
+  "attributes": {
+    "markdown": {
+      "type": "richtext",
+      "required": true
+    }
+  },
+  "config": {}
+}
