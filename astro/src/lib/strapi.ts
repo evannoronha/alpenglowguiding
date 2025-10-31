@@ -155,7 +155,14 @@ export async function getPostBySlug(
     encodeValuesOnly: true,
   });
 
-  const res = await fetch(`${STRAPI_URL}/api/posts?${query}`);
+  let url = `${STRAPI_URL}/api/posts?${query}`;
+
+  // Add status parameter for draft content
+  if (options?.preview && options?.status === 'draft') {
+    url += '&status=draft';
+  }
+
+  const res = await fetch(url);
 
   if (!res.ok) {
     throw new Error(`Strapi fetch failed: ${res.status} ${res.statusText}`);
