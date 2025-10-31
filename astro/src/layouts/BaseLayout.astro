@@ -6,6 +6,9 @@ import GoogleAnayltics from "../components/GoogleAnalytics.astro";
 import "../styles/global.css";
 const { title, description } = Astro.props;
 
+// Check if we're in preview mode directly from the URL
+const isPreview = Astro.url.searchParams.get('preview') === 'true';
+
 let displayTitle = `Alpenglow Guiding | ${title}`;
 let openGraph = {
 	basic: {
@@ -38,8 +41,8 @@ let openGraph = {
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<Header />
+		{!isPreview && <Header />}
 		<slot />
-		<Footer />
+		{!isPreview && <Footer />}
 	</body>
 </html>

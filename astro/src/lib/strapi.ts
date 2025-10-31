@@ -121,9 +121,17 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
 
 /**
  * Fetch a single post by slug from Strapi
+ * @param slug - The post slug
+ * @param options - Optional parameters for preview mode
  */
-export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
-  const query = qs.stringify({
+export async function getPostBySlug(
+  slug: string,
+  options?: {
+    preview?: boolean;
+    status?: 'published' | 'draft';
+  }
+): Promise<StrapiPost | null> {
+  const queryParams: any = {
     filters: {
       slug: {
         $eq: slug
@@ -136,7 +144,14 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
         populate: '*'
       }
     }
-  }, {
+  };
+
+  // In preview mode, include draft posts
+  if (options?.preview && options?.status === 'draft') {
+    queryParams.publicationState = 'preview';
+  }
+
+  const query = qs.stringify(queryParams, {
     encodeValuesOnly: true,
   });
 

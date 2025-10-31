@@ -1,20 +1,28 @@
 ---
 import MarkdownPostLayout from "../../layouts/MarkdownBlogPostLayout.astro";
 import DynamicZoneRenderer from "../../components/DynamicZoneRenderer";
+import PreviewBanner from "../../components/PreviewBanner.astro";
 import { getPostBySlug } from "../../lib/strapi";
 
 const { slug } = Astro.params;
-console.log(slug);
 
-const post = await getPostBySlug(slug as string);
+// Check if we're in preview mode
+const url = new URL(Astro.request.url);
+const isPreview = url.searchParams.get('preview') === 'true';
+const status = url.searchParams.get('status') as 'published' | 'draft' || 'published';
+
+// Fetch the post with preview options if in preview mode
+const post = await getPostBySlug(slug as string, {
+  preview: isPreview,
+  status: status,
+});
 
 if (!post) {
   return Astro.redirect("/404");
 }
-
-console.log('Post body:', JSON.stringify(post.body, null, 2));
 ---
 
 <MarkdownPostLayout frontmatter={post}>
+  {isPreview && <PreviewBanner status={status} />}
   <DynamicZoneRenderer content={post.body} client:load />
 </MarkdownPostLayout>
