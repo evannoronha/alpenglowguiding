@@ -43,6 +43,7 @@ export interface StrapiPost {
   date: Date;
   description: string | null;
   content: any[];
+  body: any[];
   image: StrapiImage | null;
   author: StrapiAuthor | null;
   createdAt: string | null;
@@ -57,7 +58,10 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
   const query = qs.stringify({
     populate: {
       author: true,
-      image: true
+      image: true,
+      body: {
+        populate: '*'
+      }
     }
   }, {
     encodeValuesOnly: true,
@@ -82,6 +86,7 @@ export async function getAllPosts(): Promise<StrapiPost[]> {
       date: new Date(item?.date),
       description: item?.description ?? null,
       content: item?.content ?? [],
+      body: item?.body ?? [],
       image: img
         ? {
             url: getStrapiImageUrl(img.url) || '',
@@ -126,7 +131,10 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
     },
     populate: {
       author: true,
-      image: true
+      image: true,
+      body: {
+        populate: '*'
+      }
     }
   }, {
     encodeValuesOnly: true,
@@ -155,6 +163,7 @@ export async function getPostBySlug(slug: string): Promise<StrapiPost | null> {
     date: new Date(item?.date),
     description: item?.description ?? null,
     content: item?.content ?? [],
+    body: item?.body ?? [],
     image: img
       ? {
           url: getStrapiImageUrl(img.url) || '',
