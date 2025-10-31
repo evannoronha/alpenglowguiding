@@ -6,6 +6,9 @@ import Certifications from "../components/Certifications.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RecentBlogPosts from "../components/RecentBlogPosts.astro";
 
+// Pre-render this page for optimal performance and image optimization
+export const prerender = true;
+
 const sections = [
 	LandingHero,
 	Programs,

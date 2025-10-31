@@ -37,10 +37,9 @@ import bioImage from "../images/tom-headshot.jpeg";
         <div class="bio-image-container">
             <Picture
                 src={bioImage}
-                width={476}
-                height={635}
+                widths={[400, 500, 600]}
+                sizes="(max-width: 700px) 100vw, 40vw"
                 pictureAttributes={{ style: "display: grid" }}
-                densities={[1, 1.25, 1.5, 1.75, 2]}
                 loading="lazy"
                 style={{ height: "auto", justifySelf: "center" }}
                 alt="Tom Skoog holding a pair of skis in the mountains"
