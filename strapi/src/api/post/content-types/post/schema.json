@@ -40,11 +40,20 @@
     },
     "content": {
       "type": "blocks",
-      "required": true
+      "required": false
     },
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "required": true
+    },
+    "body": {
+      "type": "dynamiczone",
+      "components": [
+        "body.markdown",
+        "body.rich-text",
+        "body.video"
+      ],
       "required": true
     }
   }
