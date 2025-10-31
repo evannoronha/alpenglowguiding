@@ -13,9 +13,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
     // Remove any existing X-Frame-Options header
     newResponse.headers.delete('X-Frame-Options');
 
-    console.log('Setting Content-Security-Policy to allow localhost embedding');
-    // Allow embedding from localhost Strapi
-    newResponse.headers.set('Content-Security-Policy', 'frame-ancestors http://localhost:1337');
+    // Get Strapi URL from environment
+    const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL || 'https://celebrated-victory-07e0d5532b.strapiapp.com';
+    const strapiOrigin = new URL(strapiUrl).origin;
+
+    // Allow embedding from both production and local Strapi
+    const allowedOrigins = [
+      "'self'",
+      strapiOrigin,
+      'http://localhost:1337'
+    ].join(' ');
+
+    newResponse.headers.set('Content-Security-Policy', `frame-ancestors ${allowedOrigins}`);
 
     return newResponse;
   }
