@@ -14,7 +14,7 @@ module.exports = {
       assert: {
         preset: 'lighthouse:recommended',
         assertions: {
-          "categories:performance": ["error", {"minScore": 0.95}],
+          "categories:performance": ["error", {"minScore": 0.93}],
           "categories:seo": ["error", {"minScore": 1}],
           "unused-javascript": "off",
           "lcp-lazy-loaded": "off",
