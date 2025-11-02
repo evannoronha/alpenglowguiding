@@ -1,0 +1,213 @@
+---
+---
+
+<style>
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .required {
+    color: #dc3545;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: white;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #c5a981;
+    box-shadow: 0 0 0 3px rgba(197, 169, 129, 0.1);
+  }
+
+  .form-textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .form-select {
+    cursor: pointer;
+  }
+
+  .form-hint {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.375rem;
+    line-height: 1.4;
+  }
+
+  .submit-button {
+    background: #a88f6b;
+    color: white;
+    font-weight: 700;
+    padding: 1.25rem 3rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .submit-button:hover {
+    background: #92775a;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .submit-button:active {
+    transform: translateY(0);
+  }
+
+  .submit-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .form-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .form-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .form-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<form class="contact-form" id="contactForm">
+  <div class="form-group">
+    <label for="inquiryType" class="form-label">
+      What brings you here? <span class="required">*</span>
+    </label>
+    <select id="inquiryType" name="inquiryType" class="form-select" required>
+      <option value="">Choose one...</option>
+      <option value="general">I have a question</option>
+      <option value="booking">I want to book a trip!</option>
+    </select>
+  </div>
+
+  <div class="form-group hidden" id="tripDetailsGroup">
+    <label for="tripDetails" class="form-label">
+      Which adventure interests you?
+    </label>
+    <input
+      type="text"
+      id="tripDetails"
+      name="tripDetails"
+      class="form-input"
+      placeholder="e.g., Mt. Rainier summit, glacier travel course, backcountry skiing..."
+    />
+    <p class="form-hint">Tell us about the program or peak you're interested in</p>
+  </div>
+
+  <div class="form-group">
+    <label for="name" class="form-label">
+      Name <span class="required">*</span>
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-input"
+      placeholder="John Smith"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email" class="form-label">
+      Email <span class="required">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-input"
+      placeholder="john@example.com"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phone" class="form-label">
+      Phone <span class="required">*</span>
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      class="form-input"
+      placeholder="(206) 555-0123"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="message" class="form-label">
+      Tell us more <span class="required">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      class="form-textarea"
+      placeholder="Share your experience level, goals, preferred dates, or any questions you have. The more details you provide, the better we can help plan your adventure!"
+      required
+    ></textarea>
+  </div>
+
+  <button type="submit" class="submit-button">
+    Let's Make It Happen
+  </button>
+
+  <div id="formMessage" class="form-message hidden"></div>
+</form>
+
+<script>
+  import { handleContactFormSubmit } from '../scripts/contactForm';
+
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+
+  if (form) {
+    handleContactFormSubmit(form);
+  }
+</script>
