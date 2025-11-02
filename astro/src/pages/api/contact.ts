@@ -11,16 +11,18 @@ export const POST: APIRoute = async (context) => {
   const data = await request.formData();
   const name = data.get("name") as string;
   const email = data.get("email") as string;
-  const message = data.get("message"); // Validate the data - making sure values are not empty
-  const phone = data.get("phone");
+  const message = data.get("message") as string;
+  const phone = data.get("phone") as string;
+  const inquiryType = data.get("inquiryType") as string;
+  const tripDetails = data.get("tripDetails") as string;
 
-  if (!name || !email || !message || !phone) {
+  if (!name || !email || !message || !phone || !inquiryType) {
     return new Response(
       JSON.stringify({
-        message: `Fill out all fields.`,
+        message: `Fill out all required fields.`,
       }),
       {
-        status: 404,
+        status: 400,
         statusText: "Did not provide the right data",
       },
     );
@@ -29,9 +31,11 @@ export const POST: APIRoute = async (context) => {
   // Send the message to the email address
   let htmlContent = `
   <h1>Contact Form Submission</h1>
+  <p><strong>Inquiry Type:</strong> ${inquiryType === 'booking' ? 'Trip Booking Request' : 'General Question'}</p>
   <p><strong>Name:</strong> ${name}</p>
   <p><strong>Email:</strong> ${email}</p>
   <p><strong>Phone:</strong> ${phone}</p>
+  ${inquiryType === 'booking' && tripDetails ? `<p><strong>Trip Details:</strong> ${tripDetails}</p>` : ''}
   <p><strong>Message:</strong> ${message}</p>`;
 
   return sendEmail(name, email, htmlContent, RESEND_FROM_EMAIL, RESEND_TO_EMAIL, RESEND_API_KEY);

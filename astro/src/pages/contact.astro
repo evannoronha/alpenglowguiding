@@ -1,0 +1,437 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Get in touch with Alpenglow Guiding for general questions or to book your next mountain adventure"
+>
+  <style>
+    .hero-section {
+      background: #c5a981;
+      color: #2c2416;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-section .tagline {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #3d3220;
+    }
+
+    .hero-section p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: #3d3220;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .benefits-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+
+    .benefit-card {
+      background: #f5e6d3;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+      border: 2px solid #c5a981;
+    }
+
+    .benefit-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2c2416;
+      margin-bottom: 0.75rem;
+    }
+
+    .benefit-card p {
+      color: #5a4a35;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .form-section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2c2416;
+      margin-bottom: 0.75rem;
+    }
+
+    .form-section-header p {
+      font-size: 1.125rem;
+      color: #5a4a35;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      background: #fdfcfa;
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 2px solid #e2c091;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: #212529;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .required {
+      color: #dc3545;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: white;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .form-select {
+      cursor: pointer;
+    }
+
+    .form-hint {
+      font-size: 0.875rem;
+      color: #6c757d;
+      margin-top: 0.375rem;
+      line-height: 1.4;
+    }
+
+    .submit-button {
+      background: #a88f6b;
+      color: white;
+      font-weight: 700;
+      padding: 1.25rem 3rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.125rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-button:hover {
+      background: #92775a;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .submit-button:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .form-message {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section .tagline {
+        font-size: 1.25rem;
+      }
+
+      .contact-container {
+        padding: 0 1.5rem 3rem;
+      }
+
+      .benefits-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+      }
+
+      .contact-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .submit-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <div class="hero-section">
+    <h1>Start Your Mountain Journey</h1>
+    <p class="tagline">Your Next Adventure Awaits</p>
+    <p>Whether you're dreaming of summiting peaks, mastering alpine skills, or exploring the backcountry, we're here to make it happen. Reach out today and let's plan your unforgettable mountain experience.</p>
+  </div>
+
+  <div class="contact-container">
+    <div class="benefits-section">
+      <div class="benefit-card">
+        <span class="benefit-icon">🎓</span>
+        <h3>Technical Skills Instruction</h3>
+        <p>Learn essential alpine techniques from glacier travel and crevasse rescue to rope systems and anchors</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🧗</span>
+        <h3>Guided Climbs</h3>
+        <p>Expert guiding on rock, snow, and ice for peaks and routes across the Pacific Northwest</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">📈</span>
+        <h3>Personal Coaching</h3>
+        <p>One-on-one coaching to help you refine your skills, build confidence, and achieve your climbing goals</p>
+      </div>
+    </div>
+
+    <div class="form-section-header">
+      <h2>Let's Connect</h2>
+      <p>Fill out the form below and we'll get back to you as soon as possible</p>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="inquiryType" class="form-label">
+          What brings you here? <span class="required">*</span>
+        </label>
+        <select id="inquiryType" name="inquiryType" class="form-select" required>
+          <option value="">Choose one...</option>
+          <option value="general">I have a question</option>
+          <option value="booking">I want to book a trip!</option>
+        </select>
+      </div>
+
+      <div class="form-group hidden" id="tripDetailsGroup">
+        <label for="tripDetails" class="form-label">
+          Which adventure interests you?
+        </label>
+        <input
+          type="text"
+          id="tripDetails"
+          name="tripDetails"
+          class="form-input"
+          placeholder="e.g., Mt. Rainier summit, glacier travel course, backcountry skiing..."
+        />
+        <p class="form-hint">Tell us about the program or peak you're interested in</p>
+      </div>
+
+      <div class="form-group">
+        <label for="name" class="form-label">
+          Name <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-input"
+          placeholder="John Smith"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="form-label">
+          Email <span class="required">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-input"
+          placeholder="john@example.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="form-label">
+          Phone <span class="required">*</span>
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          class="form-input"
+          placeholder="(206) 555-0123"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message" class="form-label">
+          Tell us more <span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          class="form-textarea"
+          placeholder="Share your experience level, goals, preferred dates, or any questions you have. The more details you provide, the better we can help plan your adventure!"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="submit-button">
+        Let's Make It Happen
+      </button>
+
+      <div id="formMessage" class="form-message hidden"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const inquiryType = document.getElementById('inquiryType') as HTMLSelectElement;
+    const tripDetailsGroup = document.getElementById('tripDetailsGroup') as HTMLDivElement;
+    const submitButton = form.querySelector('.submit-button') as HTMLButtonElement;
+    const formMessage = document.getElementById('formMessage') as HTMLDivElement;
+
+    // Show/hide trip details based on inquiry type
+    inquiryType.addEventListener('change', () => {
+      if (inquiryType.value === 'booking') {
+        tripDetailsGroup.classList.remove('hidden');
+      } else {
+        tripDetailsGroup.classList.add('hidden');
+      }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Disable submit button and show loading state
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+      formMessage.classList.add('hidden');
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Success
+          formMessage.textContent = 'Success! Your message has been sent. We\'ll be in touch within 24 hours to start planning your adventure!';
+          formMessage.classList.remove('error', 'hidden');
+          formMessage.classList.add('success');
+          form.reset();
+          tripDetailsGroup.classList.add('hidden');
+        } else {
+          // Error
+          formMessage.textContent = result.message || 'Something went wrong. Please try again or call us at (206) 697-3966.';
+          formMessage.classList.remove('success', 'hidden');
+          formMessage.classList.add('error');
+        }
+      } catch (error) {
+        // Network or other error
+        formMessage.textContent = 'Failed to send message. Please check your connection or call us at (206) 697-3966.';
+        formMessage.classList.remove('success', 'hidden');
+        formMessage.classList.add('error');
+      } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Let\'s Make It Happen';
+      }
+    });
+  </script>
+</BaseLayout>
