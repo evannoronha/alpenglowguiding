@@ -16,6 +16,8 @@
         "enabled": true
     },
     "vars": {
-        "STRAPI_API_URL": "https://celebrated-victory-07e0d5532b.strapiapp.com"
+        "STRAPI_API_URL": "https://celebrated-victory-07e0d5532b.strapiapp.com",
+        "RESEND_FROM_EMAIL": "website@alpenglowguiding.com",
+        "RESEND_TO_EMAIL": "tom@alpenglowguiding.com"
     }
 }
