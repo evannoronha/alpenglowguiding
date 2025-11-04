@@ -16,7 +16,8 @@
       "required": true
     },
     "description": {
-      "type": "string",
+      "type": "text",
+      "minLength": 45,
       "required": true
     },
     "images": {
