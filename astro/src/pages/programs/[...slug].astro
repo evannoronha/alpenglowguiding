@@ -1,16 +1,20 @@
 ---
-import { getAllPrograms } from "../../lib/strapi";
+export const prerender = false;
+
+import { getProgramBySlug } from "../../lib/strapi";
 import StrapiProgramLayout from "../../layouts/StrapiProgramLayout.astro";
 
-export async function getStaticPaths() {
-    const programs = await getAllPrograms();
-    return programs.map((program) => ({
-        params: { slug: program.slug },
-        props: { program },
-    }));
+const { slug } = Astro.params;
+
+if (!slug) {
+    return Astro.redirect("/404");
 }
 
-const { program } = Astro.props;
+const program = await getProgramBySlug(slug);
+
+if (!program) {
+    return Astro.redirect("/404");
+}
 ---
 
 <StrapiProgramLayout program={program} />
