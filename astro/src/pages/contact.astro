@@ -1,10 +1,182 @@
 ---
-import ContactForm from "../components/ContactForm";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Use this form to contact Alpenglow Guiding. We're happy to answer any questions you may have, book a trip, or schedule an instructional session.">
-  <ContactForm client:visible />
+  title="Contact Us"
+  description="Get in touch with Alpenglow Guiding for general questions or to book your next mountain adventure"
+>
+  <style>
+    .hero-section {
+      background: #c5a981;
+      color: #2c2416;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-section .tagline {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #3d3220;
+    }
+
+    .hero-section p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: #3d3220;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .benefits-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+
+    .benefit-card {
+      background: #f5e6d3;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+      border: 2px solid #c5a981;
+    }
+
+    .benefit-card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2c2416;
+      margin-bottom: 0.75rem;
+    }
+
+    .benefit-card p {
+      color: #5a4a35;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .form-section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2c2416;
+      margin-bottom: 0.75rem;
+    }
+
+    .form-section-header p {
+      font-size: 1.125rem;
+      color: #5a4a35;
+      line-height: 1.6;
+    }
+
+    .form-wrapper {
+      background: #fdfcfa;
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 2px solid #e2c091;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section .tagline {
+        font-size: 1.25rem;
+      }
+
+      .contact-container {
+        padding: 0 1.5rem 3rem;
+      }
+
+      .benefits-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+      }
+
+      .form-wrapper {
+        padding: 2rem 1.5rem;
+      }
+
+      .submit-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <div class="hero-section">
+    <h1>Start Your Mountain Journey</h1>
+    <p class="tagline">Your Next Adventure Awaits</p>
+    <p>Whether you're dreaming of summiting peaks, mastering alpine skills, or exploring the backcountry, we're here to make it happen. Reach out today and let's plan your unforgettable mountain experience.</p>
+  </div>
+
+  <div class="contact-container">
+    <div class="benefits-section">
+      <div class="benefit-card">
+        <span class="benefit-icon">🎓</span>
+        <h3>Technical Skills Instruction</h3>
+        <p>Learn essential alpine techniques from glacier travel and crevasse rescue to rope systems and anchors</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🧗</span>
+        <h3>Guided Climbs</h3>
+        <p>Expert guiding on rock, snow, and ice for peaks and routes across the Pacific Northwest</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">📈</span>
+        <h3>Personal Coaching</h3>
+        <p>One-on-one coaching to help you refine your skills, build confidence, and achieve your climbing goals</p>
+      </div>
+    </div>
+
+    <div class="form-section-header">
+      <h2>Let's Connect</h2>
+      <p>Fill out the form below and we'll get back to you as soon as possible</p>
+    </div>
+
+    <div class="form-wrapper">
+      <ContactForm />
+    </div>
+  </div>
 </BaseLayout>

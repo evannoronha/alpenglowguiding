@@ -1,35 +1,64 @@
-import { Resend } from "resend";
+import { Resend } from 'resend';
 
-export const sendEmail = async (name: string, email: string, htmlContent: string, from: string, to: string, key: string) => {
-    // TODO: Pass via env
-    const resend = new Resend(key);
-    const sendResend = await resend.emails.send({
-        from: from,
-        replyTo: email as string,
-        to: to,
-        subject: `Submission from ${name}`,
-        html: htmlContent,
-    }); // If the message was sent successfully, return a 200 response
+export async function sendEmail(
+  name: string,
+  _email: string,
+  htmlContent: string,
+  fromEmail: string,
+  toEmail: string,
+  apiKey: string
+) {
+  const resend = new Resend(apiKey);
 
-    if (sendResend.data) {
-        return new Response(
-            JSON.stringify({
-                message: `Message successfully sent!`,
-            }),
-            {
-                status: 200,
-                statusText: "OK",
-            },
-        ); // If there was an error sending the message, return a 500 response
-    } else {
-        return new Response(
-            JSON.stringify({
-                message: `Message failed to send: ${sendResend.error?.message} ${sendResend.error?.name}`,
-            }),
-            {
-                status: 500,
-                statusText: `Internal Server Error: ${sendResend.error}`,
-            },
-        );
+  try {
+    const { data, error } = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      subject: `Contact Form Submission from ${name}`,
+      html: htmlContent,
+    });
+
+    if (error) {
+      console.error('Resend API error:', error);
+      return new Response(
+        JSON.stringify({
+          message: 'Failed to send email',
+          error: error,
+        }),
+        {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
-};
+
+    return new Response(
+      JSON.stringify({
+        message: 'Email sent successfully!',
+        data,
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return new Response(
+      JSON.stringify({
+        message: 'Failed to send email',
+        error: error instanceof Error ? error.message : 'Unknown error',
+      }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
+}
