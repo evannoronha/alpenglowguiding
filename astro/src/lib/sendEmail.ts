@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 
 export async function sendEmail(
   name: string,
-  email: string,
+  _email: string,
   htmlContent: string,
   fromEmail: string,
   toEmail: string,

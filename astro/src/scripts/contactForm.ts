@@ -1,12 +1,17 @@
 export function handleContactFormSubmit(form: HTMLFormElement): void {
-  const inquiryType = document.getElementById('inquiryType') as HTMLSelectElement;
-  const tripDetailsGroup = document.getElementById('tripDetailsGroup') as HTMLDivElement;
-  const submitButton = form.querySelector('.submit-button') as HTMLButtonElement;
-  const formMessage = document.getElementById('formMessage') as HTMLDivElement;
+  const inquiryType = document.getElementById('inquiryType');
+  const tripDetailsGroup = document.getElementById('tripDetailsGroup');
+  const submitButton = form.querySelector('.submit-button');
+  const formMessage = document.getElementById('formMessage');
+
+  if (!inquiryType || !tripDetailsGroup || !submitButton || !formMessage) {
+    console.error('Required form elements not found');
+    return;
+  }
 
   // Show/hide trip details based on inquiry type
   inquiryType.addEventListener('change', () => {
-    if (inquiryType.value === 'booking') {
+    if ((inquiryType as HTMLSelectElement).value === 'booking') {
       tripDetailsGroup.classList.remove('hidden');
     } else {
       tripDetailsGroup.classList.add('hidden');
@@ -30,7 +35,7 @@ export function handleContactFormSubmit(form: HTMLFormElement): void {
         body: formData,
       });
 
-      const result = await response.json();
+      const result = await response.json() as { message?: string };
 
       if (response.ok) {
         // Success
