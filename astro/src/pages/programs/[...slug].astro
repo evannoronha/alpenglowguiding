@@ -1,21 +1,18 @@
 ---
-import { getCollection, render } from "astro:content";
-import MarkdownProgramLayout from "../../layouts/MarkdownProgramLayout.astro";
+import { getAllPrograms } from "../../lib/strapi";
+import StrapiProgramLayout from "../../layouts/StrapiProgramLayout.astro";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-    const posts = await getCollection("program");
-    return posts.map((post) => ({
-        params: { slug: post.id },
-        props: { post },
+    const programs = await getAllPrograms();
+    return programs.map((program) => ({
+        params: { slug: program.slug },
+        props: { program },
     }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { program } = Astro.props;
 ---
 
-<MarkdownProgramLayout frontmatter={post.data}>
-    <Content />
-</MarkdownProgramLayout>
+<StrapiProgramLayout program={program} />

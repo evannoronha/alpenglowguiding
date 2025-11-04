@@ -15,23 +15,5 @@ const blog = defineCollection({
   })
 });
 
-const program = defineCollection({
-  loader: glob({ pattern: '*', base: "src/content/program/" }),
-  schema: ({ image }) => z.object({
-    name: z.string(),
-    description: z.string(),
-    objectives: z.array(z.string()),
-    requiredEquipment: z.object({
-      clothing: z.array(z.string()),
-      technicalEquipment: z.array(z.string())
-    }),
-    image: image(),
-    schedule: z.array(z.object({
-      event: z.string(),
-      itinerary: z.array(z.string())
-    }))
-  })
-});
-
 // Export a single `collections` object to register your collection(s)
-export const collections = { blog, program };
+export const collections = { blog };
