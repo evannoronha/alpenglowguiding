@@ -31,12 +31,24 @@ export interface BodyVideo extends Struct.ComponentSchema {
   };
 }
 
+export interface ProgramsProgramPageSection extends Struct.ComponentSchema {
+  collectionName: 'components_programs_program_page_sections';
+  info: {
+    displayName: 'program_page_section';
+  };
+  attributes: {
+    section_content: Schema.Attribute.Blocks;
+    section_header: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'body.markdown': BodyMarkdown;
       'body.rich-text': BodyRichText;
       'body.video': BodyVideo;
+      'programs.program-page-section': ProgramsProgramPageSection;
     }
   }
 }

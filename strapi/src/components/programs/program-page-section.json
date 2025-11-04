@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_programs_program_page_sections",
+  "info": {
+    "displayName": "program_page_section"
+  },
+  "options": {},
+  "attributes": {
+    "section_header": {
+      "type": "string",
+      "required": true
+    },
+    "section_content": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}
