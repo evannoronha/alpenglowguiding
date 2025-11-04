@@ -8,9 +8,6 @@ import RecentBlogPosts from "../components/RecentBlogPosts.astro";
 import { getImage } from "astro:assets";
 import heroImage from "../images/hero-image.jpg";
 
-// Pre-render this page for optimal performance and image optimization
-export const prerender = true;
-
 // Generate optimized hero image for preload
 const optimizedHeroImage = await getImage({ src: heroImage, width: 1024, format: 'webp' });
 
