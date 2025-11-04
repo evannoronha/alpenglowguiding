@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getAllPosts } from '../lib/strapi';
-import { getCollection } from 'astro:content';
+import { getAllPosts, getAllPrograms } from '../lib/strapi';
 
 export const GET: APIRoute = async ({ site }) => {
   const siteUrl = site?.toString() || 'https://alpenglowguiding.com';
@@ -29,12 +28,13 @@ export const GET: APIRoute = async ({ site }) => {
     console.error('Error fetching posts for sitemap:', error);
   }
 
-  // Get program pages from content collections
+  // Get program pages from Strapi
   let programPages: any[] = [];
   try {
-    const programs = await getCollection('program');
+    const programs = await getAllPrograms();
     programPages = programs.map(program => ({
-      url: `/programs/${program.id}`,
+      url: `/programs/${program.slug}`,
+      lastmod: program.updatedAt || program.publishedAt || program.createdAt,
       priority: '0.8',
       changefreq: 'monthly'
     }));
