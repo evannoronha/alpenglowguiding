@@ -1,7 +1,7 @@
 export function handleContactFormSubmit(form: HTMLFormElement): void {
-  const inquiryType = document.getElementById('inquiryType');
+  const inquiryType = document.getElementById('inquiryType') as unknown as HTMLSelectElement;
   const tripDetailsGroup = document.getElementById('tripDetailsGroup');
-  const submitButton = form.querySelector('.submit-button');
+  const submitButton = form.querySelector('.submit-button') as HTMLButtonElement;
   const formMessage = document.getElementById('formMessage');
 
   if (!inquiryType || !tripDetailsGroup || !submitButton || !formMessage) {
@@ -11,7 +11,7 @@ export function handleContactFormSubmit(form: HTMLFormElement): void {
 
   // Show/hide trip details based on inquiry type
   inquiryType.addEventListener('change', () => {
-    if ((inquiryType as HTMLSelectElement).value === 'booking') {
+    if ((inquiryType).value === 'booking') {
       tripDetailsGroup.classList.remove('hidden');
     } else {
       tripDetailsGroup.classList.add('hidden');
