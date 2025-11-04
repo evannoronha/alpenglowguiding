@@ -2,8 +2,6 @@
 import { getAllPrograms } from "../../lib/strapi";
 import StrapiProgramLayout from "../../layouts/StrapiProgramLayout.astro";
 
-export const prerender = true;
-
 export async function getStaticPaths() {
     const programs = await getAllPrograms();
     return programs.map((program) => ({
