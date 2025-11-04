@@ -51,6 +51,32 @@ export interface StrapiPost {
   publishedAt: string | null;
 }
 
+export interface StrapiProgramSection {
+  __component: string;
+  id: number;
+  section_header: string;
+  section_content: Array<{
+    type: string;
+    children: Array<{
+      type: string;
+      text: string;
+    }>;
+  }>;
+}
+
+export interface StrapiProgram {
+  id: number;
+  documentId: string;
+  name: string;
+  description: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  images: StrapiImage[];
+  body: StrapiProgramSection[];
+}
+
 /**
  * Fetch all posts from Strapi
  */
@@ -215,4 +241,173 @@ export async function getPostBySlug(
     updatedAt: item?.updatedAt ?? null,
     publishedAt: item?.publishedAt ?? null,
   };
+}
+
+/**
+ * Fetch all programs from Strapi
+ */
+export async function getAllPrograms(): Promise<StrapiProgram[]> {
+  const query = qs.stringify({
+    populate: {
+      images: true,
+      body: {
+        populate: '*'
+      }
+    }
+  }, {
+    encodeValuesOnly: true,
+  });
+
+  const res = await fetch(`${STRAPI_URL}/api/programs?${query}`);
+
+  if (!res.ok) {
+    throw new Error(`Strapi fetch failed: ${res.status} ${res.statusText}`);
+  }
+
+  const json: any = await res.json();
+
+  return (json?.data ?? []).map((item: any) => {
+    return {
+      id: item?.id,
+      documentId: item?.documentId,
+      name: item?.name,
+      description: item?.description,
+      slug: item?.slug,
+      createdAt: item?.createdAt,
+      updatedAt: item?.updatedAt,
+      publishedAt: item?.publishedAt,
+      images: (item?.images ?? []).map((img: any) => ({
+        url: getStrapiImageUrl(img.url) || '',
+        width: img.width,
+        height: img.height,
+        alternativeText: img.alternativeText ?? null,
+        caption: img.caption ?? null,
+        formats: img.formats
+          ? Object.keys(img.formats).reduce((acc, key) => {
+              const format = img.formats[key];
+              acc[key] = {
+                ...format,
+                url: getStrapiImageUrl(format.url) || format.url,
+              };
+              return acc;
+            }, {} as any)
+          : {},
+      })),
+      body: item?.body ?? [],
+    };
+  });
+}
+
+/**
+ * Fetch a single program by slug from Strapi
+ */
+export async function getProgramBySlug(slug: string): Promise<StrapiProgram | null> {
+  const queryParams: any = {
+    filters: {
+      slug: {
+        $eq: slug
+      }
+    },
+    populate: {
+      images: true,
+      body: {
+        populate: '*'
+      }
+    }
+  };
+
+  const query = qs.stringify(queryParams, {
+    encodeValuesOnly: true,
+  });
+
+  const url = `${STRAPI_URL}/api/programs?${query}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`Strapi fetch failed: ${res.status} ${res.statusText}`);
+  }
+
+  const json: any = await res.json();
+
+  if (!json?.data || json.data.length === 0) {
+    return null;
+  }
+
+  const item = json.data[0];
+
+  return {
+    id: item?.id,
+    documentId: item?.documentId,
+    name: item?.name,
+    description: item?.description,
+    slug: item?.slug,
+    createdAt: item?.createdAt,
+    updatedAt: item?.updatedAt,
+    publishedAt: item?.publishedAt,
+    images: (item?.images ?? []).map((img: any) => ({
+      url: getStrapiImageUrl(img.url) || '',
+      width: img.width,
+      height: img.height,
+      alternativeText: img.alternativeText ?? null,
+      caption: img.caption ?? null,
+      formats: img.formats
+        ? Object.keys(img.formats).reduce((acc, key) => {
+            const format = img.formats[key];
+            acc[key] = {
+              ...format,
+              url: getStrapiImageUrl(format.url) || format.url,
+            };
+            return acc;
+          }, {} as any)
+        : {},
+    })),
+    body: item?.body ?? [],
+  };
+}
+
+/**
+ * Parse section content from Strapi rich text format
+ * Returns structured content with headings and items
+ */
+export interface ParsedContent {
+  type: 'heading' | 'item';
+  text: string;
+  level?: number;
+}
+
+export function parseSectionContent(content: StrapiProgramSection['section_content']): ParsedContent[] {
+  const result: ParsedContent[] = [];
+
+  for (const block of content) {
+    if (block.type === 'paragraph') {
+      const text = block.children.map((child: any) => child.text).join('');
+      if (text.trim()) {
+        result.push({ type: 'item', text });
+      }
+    } else if (block.type === 'heading') {
+      const text = block.children.map((child: any) => child.text).join('');
+      if (text.trim()) {
+        result.push({ type: 'heading', text, level: (block as any).level });
+      }
+    } else if (block.type === 'list') {
+      const items = (block as any).children || [];
+      for (const item of items) {
+        if (item.type === 'list-item') {
+          const text = item.children.map((child: any) => child.text).join('');
+          if (text.trim()) {
+            result.push({ type: 'item', text });
+          }
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Get section by header name
+ */
+export function getSectionByHeader(program: StrapiProgram, header: string): StrapiProgramSection | null {
+  return program.body.find(section => section.section_header === header) || null;
 }

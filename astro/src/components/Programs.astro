@@ -1,12 +1,8 @@
 ---
-import { Picture } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getAllPrograms } from "../lib/strapi";
 const title = "Our Programs";
 
-const allPrograms = await getCollection("program")
-    .then((posts:any[]) =>
-        posts.sort((a, b) => a.data.sequenceNumber - b.data.sequenceNumber),
-    )
+const allPrograms = await getAllPrograms();
 ---
 
 <style>
@@ -76,23 +72,24 @@ const allPrograms = await getCollection("program")
     <h2>{title}</h2>
     <div class="programs-container">
         {
-            allPrograms.map((post: any) => (
+            allPrograms.map((program) => (
                 <div class="program-wrapper">
-                    <a href={`/programs/${post.id}`}>
+                    <a href={`/programs/${program.slug}`}>
                         <div class="program-image-wrapper">
-                            <Picture
-                                src={post.data.image}
-                                alt="${post.data.name} program"
-                                width={300}
-                                height={350}
-                                densities={[1, 1.5, 2]}
-                                loading="lazy"
-                                class="program-image"
-                            />
+                            {program.images && program.images.length > 0 && (
+                                <img
+                                    src={program.images[0].formats?.medium?.url || program.images[0].url}
+                                    alt={program.images[0].alternativeText || `${program.name} program`}
+                                    width={300}
+                                    height={350}
+                                    loading="lazy"
+                                    class="program-image"
+                                />
+                            )}
                         </div>
                         <div class="program-details">
-                            <strong>{post.data.name}</strong>
-                            <p>{post.data.description}</p>
+                            <strong>{program.name}</strong>
+                            <p>{program.description}</p>
                         </div>
                     </a>
                 </div>
