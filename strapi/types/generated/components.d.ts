@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BodyImage extends Struct.ComponentSchema {
+  collectionName: 'components_body_images';
+  info: {
+    displayName: 'image';
+  };
+  attributes: {
+    caption: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface BodyMarkdown extends Struct.ComponentSchema {
   collectionName: 'components_body_markdowns';
   info: {
@@ -45,6 +57,7 @@ export interface ProgramsProgramPageSection extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'body.image': BodyImage;
       'body.markdown': BodyMarkdown;
       'body.rich-text': BodyRichText;
       'body.video': BodyVideo;
